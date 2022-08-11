@@ -1,0 +1,23 @@
+.mainBg {
+    height: 100vh;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+.nav {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.navBtn {
+    margin-top: 6px;
+    margin-left: 6px;
+    background-image: url('../../public/berger-menu.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border: 0;
+}
+.main{
+    background-color: bisque;
+}

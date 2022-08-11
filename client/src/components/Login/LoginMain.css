@@ -1,0 +1,35 @@
+.loginMain-bg{
+    background-color: white;
+    padding-top: 200px;
+    display: grid;
+    grid-template-rows: repeat(2, 50px 50px);
+    row-gap: 40px;
+    height: 100vh;
+}
+.loginMain-bg input {
+    margin: auto;
+    border: 0;
+    border-bottom: 3px solid gray;
+    height: 40px;
+    width: 250px;
+    outline: none;
+}
+.loginMain-bg input:focus {
+}
+.loginMain-bg button {
+    margin: auto;
+    border: 0;
+    background-color: #2BDB66;
+    color: white;
+    border-radius: 25px;
+    height: 40px;
+    width: 150px;
+
+}
+.loginMain-bg p a{
+    padding-left: 50px;
+    text-decoration: none;
+}
+.loginMain-bg p a:visited {
+    color: deepskyblue; 
+}
