@@ -20,9 +20,26 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+app.post('/api/boardpost', (req, res) => {
+  let sql = 'INSERT INTO cc_camp.Board VALUES (null, ?, ?, ?)';
+  let nicname = req.body.nicname;
+  let title = req.body.title;
+  let content = req.body.content;
+  //console.log(nicname)
+  //console.log(title)
+  //console.log(content)
+  let params = [nicname, title, content];
+  connection.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
+    })
+})
+
+
 app.get('/api/post',(req, res) => {
-  const num = req.query.boardnum;
-  console.log(num);
+  // ?[파라메터 명]=[파라메터 값] 으로 온 요청을 받는다
+  const num = req.query.boardnum;  // req.query.[파라메터 명]은 [파라메터 값]이 된다.
+  //console.log(num); // 1
 
   connection.query(
     'SELECT * FROM cc_camp.Board WHERE boardnum = ?', [num]

@@ -20,6 +20,7 @@ export default function MainBoard() {
             setBoard(data);
         })
     },[]);
+    
     //console.log(boardApi[0].boardnum)
     return (
         <>
@@ -38,33 +39,20 @@ export default function MainBoard() {
                             <button>글쓰기</button>
                         </Link>
                     </div>
+                    {/*<form>*/}
                     <div className="subHeaderSearch">
                         <select name="target" id="subHeaderSearch">
                             <option value="title">제목</option>
-                            <option value="username">작성자</option>
+                            <option value="nicname">작성자</option>
                         </select>
                         <input type="text" placeholder="검색" className="subHeaderSearchInput" />
-                        <button>검색</button>
+                        <button type='sumit'>검색</button>
                     </div>
+                    {/*</form>*/}
                 </div>
                 <section className="articleList">
                 {boardApi ? boardApi.map(data =>(
-                    <article className="articleListItem">
-                        <div className="articleListItemContent">
-                            <div className="articleListItemContentTitle"> 
-                                <Link to={`/Post/${data.boardnum}`}>
-                                    <span>{data.title}</span>
-                                </Link>
-                            </div>
-                            <div className="articleListItemMeta">
-                                <div className="articleListItemMetaTime"><span>8시간전</span></div>
-                                <div className="articleListItemMetaUser"><span><a href="">{data.nicname}</a></span></div>
-                            </div>
-                        </div>
-                        <div className="articleListItemThumnail">
-                            <img src="" alt="아직없음" />
-                        </div>
-                    </article>
+                    <BoardList key={data.id} data={data}/>
                 )):"아직안됨"}
                 </section>
             </div>
