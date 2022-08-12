@@ -1,6 +1,9 @@
 const expres = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+//db정보
+const dbconfig = require('./config/Database.js');
+const axios = require('axios')
 
 const app = expres();
 const port = process.env.PORT || 5000;
@@ -8,8 +11,6 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 
-//db정보
-const dbconfig = require('./config/Database.js');
 
 //실제 db연결
 const connection = mysql.createConnection({
@@ -19,6 +20,16 @@ const connection = mysql.createConnection({
   databases: dbconfig.databases
 });
 connection.connect();
+
+app.post('/oauth/google', async (req, res) => {
+  const {accessToken} = req.body;
+  //console.log(accessToken);
+  const { data } = await axios.get(
+    `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
+  )
+  console.log(data)// return 구글 가입정보 
+  res.send(data);
+})
 
 app.post('/api/boardpost', (req, res) => {
   let sql = 'INSERT INTO cc_camp.Board VALUES (null, ?, ?, ?)';

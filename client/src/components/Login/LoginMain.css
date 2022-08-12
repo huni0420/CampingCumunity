@@ -1,35 +1,70 @@
-.loginMain-bg{
+.loginBg{
     background-color: white;
-    padding-top: 200px;
-    display: grid;
-    grid-template-rows: repeat(2, 50px 50px);
-    row-gap: 40px;
     height: 100vh;
 }
-.loginMain-bg input {
+.login{
     margin: auto;
-    border: 0;
-    border-bottom: 3px solid gray;
-    height: 40px;
+    background-color: white;
+    /* 
+    transform 속성은 요소에 회전, 기울이기, 이동 등 시각적인 효과를 줄 수 있는 속성입니다.
+    translate는 가로, 세로 방향으로 요소를 이동시킬 때 사용하는 함수입니다.
+    translate의 첫번째 값은 가로이동 거리, 두번째 값은 세로 이동거리를 나타냅니다.
+    태그 자체가 옮겨져 width height를 잴필요가 없지만 글이 길어질때 감싸는 div를 넘어섭니다 */
+    transform: translate(0,30%);
+    height: 400px;
     width: 250px;
-    outline: none;
+    box-shadow: 10px 12px 11px 1px rgb(165, 162, 162, 0.6);
+    display: grid;
+    grid-template-rows: 90px 1px 1fr 1fr;
 }
-.loginMain-bg input:focus {
+.login h1{
+    transform: translate(-25%,10%);
 }
-.loginMain-bg button {
-    margin: auto;
-    border: 0;
-    background-color: #2BDB66;
-    color: white;
-    border-radius: 25px;
-    height: 40px;
-    width: 150px;
+.login .line{
+    transform: translate(25%,-300%);
+    width: 80px;
+    border: 1px solid skyblue;
+}
 
+.login .loginDescription {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 30px;
+    text-align: start;
 }
-.loginMain-bg p a{
-    padding-left: 50px;
-    text-decoration: none;
+
+.login .loginDescription p{
+    padding-top: 20px;
+    font-size: 0.7rem;
 }
-.loginMain-bg p a:visited {
-    color: deepskyblue; 
+
+.login .loginBtn {
+    display: grid;
+    transform: translate(10%,0);
+}
+.login .loginBtn a{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 25px;
+    color: white;
+    background-color: cornflowerblue;
+    font-size: 0.9rem;
+}
+.login .loginBtn button{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 25px;
+    color: white;
+    background-color: cornflowerblue;
+    font-size: 0.9rem;
+}
+.login .loginBtn :nth-child(1){
+    background-color: tomato;
+}
+
+.login .loginBtn :nth-child(2){
+    background-color: rgb(245, 245, 9);
+    color: black;
 }

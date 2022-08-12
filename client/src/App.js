@@ -5,9 +5,10 @@ import Join from './routes/Join';
 import Main from './routes/Main';
 import Youtube from "./routes/Youtube";
 import CampingContent from "./routes/CampingContent";
+import Board from "./routes/Board";
 import MyPage from './routes/MyPage';
 
-import Board from "./routes/Board";
+
 import Write from "./components/Main/BoardWrite/Write";
 import Post from "./components/Main/MainBoardList/Post";
 
