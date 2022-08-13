@@ -95,7 +95,7 @@ app.get('/api/post',(req, res) => {
   // ?[파라메터 명]=[파라메터 값] 으로 온 요청을 받는다
   const num = req.query.boardnum;  // req.query.[파라메터 명]은 [파라메터 값]이 된다.
   //console.log(num); // 1
-
+  //
   connection.query(
     'SELECT * FROM cc_camp.Board WHERE boardnum = ?', [num]
     ,(err, rows, field)=>{
