@@ -6,12 +6,6 @@ const googleWithLogin = () =>{
     `${process.env.REACT_APP_REDIRECT_URI}`+
     `${process.env.REACT_APP_RESPONSE_TIPE}`+
     `${process.env.REACT_APP_SCOPE}`
-    //  +"client_id=1052259056526-0ja5ngaaaf3tqnct1e18pokcunre3f6u.apps.googleusercontent.com&"+
-    //  "redirect_uri=http://localhost:3000/Join&"+
-    //  "response_type=token&"+
-    //  "scope=https://www.googleapis.com/auth/userinfo.email";
-
-    //  https://www.googleapis.com/auth/userinfo.profile
 }
   export default function LoginMain() {
     const navigate = useNavigate()
