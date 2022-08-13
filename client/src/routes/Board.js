@@ -1,14 +1,30 @@
 
-import MainNav from '../components/Main/MainNav'
-import ToMyPage from '../components/Main/ToMyPage'
+import Nav from '../components/Nav/MainNav/MainNav'
+import ToMyPage from '../components/Nav/NavConnectionConfirm'
 
-import './Board.css'
+import './css/Board.css'
 import BoardList from "../components/Main/MainBoardList/BoardList";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
 
 export default function MainBoard() {
+    const location = useLocation();
+    const navigate = useNavigate()
+    
+    const nic = location.state.nic;
+    
+    const moveWrite = () => {
+        if(nic==='')
+            alert('가입후 이용해 주세요!')
+        else
+        navigate('/Board/Write',
+        {
+            state: {
+                nic: nic
+            }
+        })    
+    }
 
     const [ boardApi, setBoard ] = useState([])
 
@@ -27,19 +43,18 @@ export default function MainBoard() {
         <div className="mainBoardBg">
             <div className="nav">
                     {/*<button className='navBtn'></button>*/}
-                    <MainNav />
-                    <ToMyPage />
+                    <Nav nic= { nic } />
+                    <ToMyPage nic= { nic }/>
             </div>
             <div className="mainBoard">
 
                 <div className="subHeader">
                     <div className="subHeaderInfo">
                         <a href="">전체<img src=""/></a>
-                        <Link to='Write'>
-                            <button>글쓰기</button>
-                        </Link>
+                        {/*<Link to='Write'>*/}
+                            <button onClick={moveWrite}>글쓰기</button>
+                        {/*</Link>*/}
                     </div>
-                    {/*<form>*/}
                     <div className="subHeaderSearch">
                         <select name="target" id="subHeaderSearch">
                             <option value="title">제목</option>
@@ -48,7 +63,6 @@ export default function MainBoard() {
                         <input type="text" placeholder="검색" className="subHeaderSearchInput" />
                         <button type='sumit'>검색</button>
                     </div>
-                    {/*</form>*/}
                 </div>
                 <section className="articleList">
                 {boardApi ? boardApi.map(data =>(

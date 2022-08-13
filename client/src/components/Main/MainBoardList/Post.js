@@ -18,6 +18,7 @@ export default function Post() {
         });
     },[])
     console.log(post);
+    
     return(
         <>
         {post.map(post => {

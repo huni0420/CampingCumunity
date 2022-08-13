@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './LoginMain.css';
-
 const googleWithLogin = () =>{
     window.location.href =`https://accounts.google.com/o/oauth2/auth?`+
     `${process.env.REACT_APP_CLIENT_ID}`+
@@ -14,8 +13,16 @@ const googleWithLogin = () =>{
 
     //  https://www.googleapis.com/auth/userinfo.profile
 }
-
   export default function LoginMain() {
+    const navigate = useNavigate()
+    const moveMain = () => {
+        navigate('/Main',
+        {
+            state: {
+                nic: ''
+            }
+        })
+    }
     return (
         <>
             <div className='loginBg'>
@@ -29,15 +36,10 @@ const googleWithLogin = () =>{
                     <div className='loginBtn'>
                         <button onClick={googleWithLogin} >Sign in with Google</button>
                         <a href='/'>Sign in with KaKao</a>
-                        <Link to={'/Main'}>가입없이 시작하기</Link>
+                        <button onClick={moveMain}>로그인없이 시작하기</button>
                     </div>
                 </div>
             </div>
         </>
     );
 }
-{/*<input type="text" placeholder='아이디' />
-<input type="password" placeholder='비밀번호' />
-<button>로그인</button>
-<p>회원이 아니신가요? <span><Link to='Join'>회원가입</Link></span></p>
-<p><Link to='/Main'>로그인 없이 가즈아</Link></p>*/}

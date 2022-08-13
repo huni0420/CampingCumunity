@@ -1,9 +1,14 @@
-import MainNav from '../components/Main/MainNav'
-import ToMyPage from '../components/Main/ToMyPage'
-import './Youtube.css'
+import Nav from '../components/Nav/MainNav/MainNav'
+import ToMyPage from '../components/Nav/NavConnectionConfirm'
+import './css/Youtube.css'
 import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 export default function MainUtube() {
+
+    const location = useLocation();
+    const nic = location.state.nic;
+
     const [ youtubeApi, setYoutube ] = useState([])
 
     useEffect(() => {
@@ -19,9 +24,8 @@ export default function MainUtube() {
         <>
         <div className="mainUtubeBg">
             <div className="nav">
-                    {/*<button className='navBtn'></button>*/}
-                    <MainNav />
-                    <ToMyPage />
+                    <Nav nic={nic}/>
+                    <ToMyPage nic= { nic } />
             </div>
             {youtubeApi.data ? youtubeApi.data.map((youtube) => {  
                 return(

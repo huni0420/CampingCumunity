@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Write.css'
 import { useState, useEffect } from 'react';
 import { post } from 'axios';
@@ -6,6 +6,20 @@ import { post } from 'axios';
 
 
 export default function Write(){
+    const location = useLocation();
+    const nic = location.state.nic;
+
+    const navigate = useNavigate()
+    const move = () => {
+
+        navigate('/Board',
+        {
+            state: {
+                nic: nic
+            }
+        })
+    }
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     //console.log(title);
@@ -24,8 +38,14 @@ export default function Write(){
         .then((res) => {
             console.log(res.data)
         })
-        setTitle('');
-        setContent('');
+        .then(
+            navigate('/Board',
+            {
+                state: {
+                    nic: nic
+                }
+            })   
+        )
     }
 
     const addBoard =() =>{
@@ -33,11 +53,8 @@ export default function Write(){
         const formData = {
             title: title,
             content: content,
-            nicname: 'java'
+            nicname: nic
         }
-        //formData.append('title',title);
-        //formData.append('content',content);
-        //formData.append('nicname','java');
         return post(url, formData);
     }
 
@@ -45,15 +62,12 @@ export default function Write(){
         <>
         <div className='WriteBg'>
             <form onSubmit={handleFormSubmit}>
+                <p>작성자: {nic}</p>
                 <input type="text" onChange={changeTitle} name='title' placeholder="제목" className="inputSubject" />
                 <textarea rows={20} onChange={changeContent} name='content' placeholder="내용" className="inputContent" />
-                <button type='submit'>작성완료</button>
                 <div className='submitButton'>
-                    {/*<Link to={'/Main/MainBoard'}>*/}
-                    {/*</Link>*/}
-                    <Link to={'/Main/MainBoard'}>
-                        <button type='submit'>취소</button>
-                    </Link>    
+                <button type='submit'>작성완료</button>
+                <button onClick={move} type='button'>취소</button>
                 </div>
             </form>
         </div>

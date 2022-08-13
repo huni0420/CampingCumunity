@@ -7,13 +7,15 @@
 input, textarea:focus {outline: 2px solid rgba(128, 128, 128, .1);}
 form{
     padding-top: 30px;
+    text-align: left;
     margin: auto;
     display: grid;
-    grid-template-rows: 30px 1fr 30px;
+    grid-template-rows: 10px 30px 1fr 30px;
     row-gap: 30px;
     width: 330px;
     height: 600px;
 }
+
 .inputContent, .inputSubject{
     border: 0;
     box-shadow: 7px 15px 15px -9px rgba(128, 128, 128, .3);

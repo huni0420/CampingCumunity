@@ -21,24 +21,68 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+
+// 닉네임을 이용해서 DB에서 맞는 닉네임의 데이터를 client에 전달
+app.get('/api/myboard',(req, res) => {
+  // ?[파라메터 명]=[파라메터 값] 으로 온 요청을 받는다
+  const nicname = req.query.nicname;  // req.query.[파라메터 명]은 [파라메터 값]이 된다.
+  //console.log(num); // 1
+
+  connection.query(
+    'SELECT * FROM cc_camp.Board WHERE nicname = ?', [nicname]
+    ,(err, rows, field)=>{
+      res.send(rows);
+    }
+  )
+})
+
+
+//존재하지 않는 회원이면 nicname생성
+app.post('/api/createnicname', (req, res) => {
+  let sql = 'INSERT INTO cc_camp.Users (nicname, email) VALUES (?, ?)';
+  let nicname = req.body.nicname;
+  let email = req.body.email;
+  console.log(nicname)
+  console.log(email)
+  let params = [nicname, email];
+  connection.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
+    })
+})
+
+//존재하는 회원인지 확인
+app.post('/api/check_id', (req, res) => {
+  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
+  let email = req.body.email;
+  console.log(email)
+  connection.query(sql,[ email ],(err, rows, field)=>{
+    console.log(rows[0]);  
+    if(rows[0] !== undefined){
+      res.send([rows[0].nicname, true]);
+    }
+    else 
+      res.send(false);
+  })
+})
+
+// accessToken을 가지고 구글에 사용자 정보 요청
 app.post('/oauth/google', async (req, res) => {
   const {accessToken} = req.body;
   //console.log(accessToken);
   const { data } = await axios.get(
     `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
   )
-  console.log(data)// return 구글 가입정보 
+  //console.log(data)// return 구글 가입정보 
   res.send(data);
 })
 
+// write에서 보내온 데이터로 DB에 저장
 app.post('/api/boardpost', (req, res) => {
   let sql = 'INSERT INTO cc_camp.Board VALUES (null, ?, ?, ?)';
   let nicname = req.body.nicname;
   let title = req.body.title;
   let content = req.body.content;
-  //console.log(nicname)
-  //console.log(title)
-  //console.log(content)
   let params = [nicname, title, content];
   connection.query(sql, params,
     (err, rows, fields) => {
@@ -46,7 +90,7 @@ app.post('/api/boardpost', (req, res) => {
     })
 })
 
-
+// 게시판 번호를 이용해서 DB에서 맞는 게시판번호의 데이터를 client에 전달
 app.get('/api/post',(req, res) => {
   // ?[파라메터 명]=[파라메터 값] 으로 온 요청을 받는다
   const num = req.query.boardnum;  // req.query.[파라메터 명]은 [파라메터 값]이 된다.
@@ -60,6 +104,7 @@ app.get('/api/post',(req, res) => {
   )
 })
 
+// 게시판목록을 전부 불러옴
 app.get('/api/board', (req, res) => {
   connection.query(
     "SELECT * FROM cc_camp.Board",
@@ -69,6 +114,7 @@ app.get('/api/board', (req, res) => {
   )
 })
 
+// 유튜브에서 가져온 리스트를 client에 전달
 app.get('/api/youtube', (req, res) => {
     res.send([
         {

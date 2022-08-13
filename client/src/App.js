@@ -1,19 +1,18 @@
-import Customer from './components/Customer';
-
 import Login from './routes/Login';
 import Join from './routes/Join';
 import Main from './routes/Main';
 import Youtube from "./routes/Youtube";
-import CampingContent from "./routes/CampingContent";
+import Content from "./routes/Content";
 import Board from "./routes/Board";
 import MyPage from './routes/MyPage';
 
 
 import Write from "./components/Main/BoardWrite/Write";
 import Post from "./components/Main/MainBoardList/Post";
+import LoginMain from './components/Login/LoginMain';
+import MyInfo from './components/MyPage/MyInfo'
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from 'react';
 function App() {
   //const [ board, setBoard ] = useState({})
 
@@ -32,14 +31,16 @@ function App() {
     <div className="App">
         <Routes>
           <Route path="/" element={<Login />}/>
+          <Route path="LoginMain/*" element={<LoginMain />} />
           <Route path="Join/*" element={<Join />}/>
           <Route path="Main/*" element={<Main />} />
           <Route path="Youtube/*" element={<Youtube />} />
-          <Route path="MyPage/*" element={<MyPage />}/>
           <Route path="Board/*" element={<Board />} />
           <Route path='Post/:no' element={<Post />} />
-          <Route path="CampingContent/*" element={<CampingContent />} />
           <Route path="Board/Write" element={<Write />}/>
+          <Route path="Content/*" element={<Content />} />
+          <Route path="MyPage/*" element={<MyPage />}/>
+          <Route path="MyInfo/*" element={<MyInfo />}/>
         </Routes>
     </div>
     </Router>
