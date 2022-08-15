@@ -1,9 +1,8 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import './Write.css'
-import { useState, useEffect } from 'react';
+import './css/Write.css'
+
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 import { post } from 'axios';
-
-
 
 export default function Write(){
     const location = useLocation();
@@ -48,7 +47,7 @@ export default function Write(){
         )
     }
 
-    const addBoard =() =>{
+    const addBoard = () =>{
         const url = '/api/boardpost';
         const formData = {
             title: title,
@@ -74,5 +73,3 @@ export default function Write(){
         </>
     )
 }
-
-//value={Content} onChange={contenthandler}

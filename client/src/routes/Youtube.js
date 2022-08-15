@@ -1,8 +1,11 @@
-import Nav from '../components/Nav/MainNav/MainNav'
-import ToMyPage from '../components/Nav/NavConnectionConfirm'
 import './css/Youtube.css'
+
+import Nav from '../components/Nav/MainNav'
+import ToMyPage from '../components/Nav/NavConnectionConfirm'
+
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 export default function MainUtube() {
 
@@ -13,13 +16,10 @@ export default function MainUtube() {
 
     useEffect(() => {
         const url = '/api/youtube';
-        fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          setYoutube({data})
-        })
+        axios(url)
+        .then((res) => setYoutube(res.data))
       },[])
-    console.log(youtubeApi)
+    //console.log(youtubeApi)
     return (
         <>
         <div className="mainUtubeBg">
@@ -27,16 +27,16 @@ export default function MainUtube() {
                     <Nav nic={nic}/>
                     <ToMyPage nic= { nic } />
             </div>
-            {youtubeApi.data ? youtubeApi.data.map((youtube) => {  
+            {youtubeApi ? youtubeApi.map((youtube) => {  
                 return(
                     youtube.items.map((item)=>{
-                    const {id,snippet = {}} = item;
-                    const {title, thumbnails ={} } = snippet;
+                    const { id, snippet = {}} = item;
+                    const { title, thumbnails ={} } = snippet;
                     const { medium,high = {} } = thumbnails;
                     return(
-                    <div key={id} className="mainUtube">
+                    <div key={title} className="mainUtube">
                             <section className="articleList">
-                                <li key={id}>
+                                <li>
                                     <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
                                         <p>
                                             <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
@@ -53,25 +53,3 @@ export default function MainUtube() {
         </>
     );
 }
-
-//{props.youtubeApi.data ? props.youtubeApi.data.map((youtube) => {  
-//    return(
-//        youtube.items.map((item)=>{
-//            const {id,snippet = {}} = item;
-//            const {title, thumbnails ={} } = snippet;
-//            const { medium,high = {} } = thumbnails;
-//            return(
-//            <>
-//                <li key={id}>
-//                    <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
-//                        <p>
-//                            <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
-//                        </p>
-//                        <h3>{title}</h3>
-//                    </a>
-//                </li>
-//            </>
-//            );
-//        })
-//    );
-//}):"아직안됨"};

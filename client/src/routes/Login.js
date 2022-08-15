@@ -1,6 +1,6 @@
 import Loading from '../components/Login/Loading'
 import LoginMain from '../components/Login/LoginMain'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 export default function Login() {

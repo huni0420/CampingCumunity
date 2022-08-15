@@ -5,27 +5,15 @@ import Youtube from "./routes/Youtube";
 import Content from "./routes/Content";
 import Board from "./routes/Board";
 import MyPage from './routes/MyPage';
+import MyInfo from './routes/MyInfo'
+import Write from "./routes/Write";
+import Post from "./routes/Post";
 
-
-import Write from "./components/Main/BoardWrite/Write";
-import Post from "./components/Main/MainBoardList/Post";
 import LoginMain from './components/Login/LoginMain';
-import MyInfo from './components/MyPage/MyInfo'
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-function App() {
-  //const [ board, setBoard ] = useState({})
 
-  //useEffect(() => {
-  //    const url = '/api/board'
-  //    fetch(url)
-  //    .then((res) => res.json())
-  //    .then((data) => {
-  //      setBoard({data})
-  //    })
-  //},[]);
-  
-  //console.log(board.data)//3번씩 찍힘 이거 해결해야됨 2022.08.10
+function App() {
   return (
     <Router>
     <div className="App">

@@ -12,28 +12,4 @@ export default function CookiesSave() {
                     //httpOnly: true
                 }
     )
-    //cookies.save('page2', 'userBoard',
-    //            {
-    //                path: '/Main',
-    //                expires,
-    //                //secure: true,
-    //                //httpOnly: true
-    //            }
-    //)
-    //cookies.save('page', 'campingContent',
-    //            {
-    //                path: '/Main',
-    //                expires,
-    //                //secure: true,
-    //                //httpOnly: true
-    //            }
-    //)
-    //cookies.save('page', 'campingYoutube',
-    //            {
-    //                path: '/Main',
-    //                expires,
-    //                //secure: true,
-    //                //httpOnly: true
-    //            }
-    //)
 }

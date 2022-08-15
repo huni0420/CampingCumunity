@@ -1,11 +1,12 @@
-
-import Nav from '../components/Nav/MainNav/MainNav'
-import ToMyPage from '../components/Nav/NavConnectionConfirm'
-
 import './css/Board.css'
-import BoardList from "../components/Main/MainBoardList/BoardList";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import Nav from '../components/Nav/MainNav'
+import ToMyPage from '../components/Nav/NavConnectionConfirm'
+import BoardList from "../components/BoardList/BoardList";
+
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 export default function MainBoard() {
@@ -26,18 +27,37 @@ export default function MainBoard() {
         })    
     }
 
-    const [ boardApi, setBoard ] = useState([])
+    //select의 선택된 옵션값의 value를 가져옴
+    const [selected, setSelected] = useState('title');
+    const selectValue = (e) => {
+        setSelected(e.target.value);
+    }
 
-    useEffect(() => {
-        const url = '/api/board'
-        fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-            setBoard(data);
-        })
-    },[]);
+    //검색할 내용 가져옴
+    const [search, setSearch] = useState('');
+    const searchText = (e) => {
+        setSearch(e.target.value)
+    }
+
+    //검색버튼을 눌러 검색내용을 불러올 useEfeect를 호출
+    const [onSearch, setOnSearch] = useState(true);
+    const searchStart =() =>{
+        if(onSearch==true)
+            setOnSearch(false)
+        if(onSearch==false)
+            setOnSearch(true)
+    }        
     
-    //console.log(boardApi[0].boardnum)
+    //게시판의 내용을 server로 요청
+    const [ boardApi, setBoard ] = useState([])
+    useEffect( ()=>{
+        const url = `/api/board?${selected}=${search}`
+        axios.get(url)
+        //.then((res)=> console.log("da",res.data))
+        .then((res)=> setBoard(res.data))
+    },[onSearch])
+
+    
     return (
         <>
         <div className="mainBoardBg">
@@ -51,23 +71,21 @@ export default function MainBoard() {
                 <div className="subHeader">
                     <div className="subHeaderInfo">
                         <a href="">전체<img src=""/></a>
-                        {/*<Link to='Write'>*/}
-                            <button onClick={moveWrite}>글쓰기</button>
-                        {/*</Link>*/}
+                        <button onClick={moveWrite}>글쓰기</button>
                     </div>
                     <div className="subHeaderSearch">
-                        <select name="target" id="subHeaderSearch">
+                        <select onChange={selectValue} id="subHeaderSearch">
                             <option value="title">제목</option>
                             <option value="nicname">작성자</option>
                         </select>
-                        <input type="text" placeholder="검색" className="subHeaderSearchInput" />
-                        <button type='sumit'>검색</button>
+                        <input onChange={searchText} type="text" placeholder="검색" className="subHeaderSearchInput" />
+                        <button onClick={searchStart}>검색</button>
                     </div>
                 </div>
                 <section className="articleList">
-                {boardApi ? boardApi.map(data =>(
-                    <BoardList key={data.id} data={data}/>
-                )):"아직안됨"}
+                {boardApi ? boardApi.map(board =>( 
+                    <BoardList key={board.boardnum} data={board}/>
+                )) :"아직안됨"}
                 </section>
             </div>
         </div>

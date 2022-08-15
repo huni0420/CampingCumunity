@@ -4,11 +4,13 @@
     display: grid;
     grid-template-rows: 60px 1fr;
 }
+
 .nav {
     background-color: darkkhaki;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
 /*.navBtn {
     margin-top: 6px;
     margin-left: 6px;
@@ -18,6 +20,7 @@
     height: 50px;
     border: 0;
 }*/
+
 .CampingContent{
     background-color: cyan;
 }

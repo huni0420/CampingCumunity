@@ -1,5 +1,7 @@
+import './css/LoginMain.css';
+
 import { useNavigate } from 'react-router-dom';
-import './LoginMain.css';
+
 const googleWithLogin = () =>{
     window.location.href =`https://accounts.google.com/o/oauth2/auth?`+
     `${process.env.REACT_APP_CLIENT_ID}`+
@@ -7,7 +9,8 @@ const googleWithLogin = () =>{
     `${process.env.REACT_APP_RESPONSE_TIPE}`+
     `${process.env.REACT_APP_SCOPE}`
 }
-  export default function LoginMain() {
+
+export default function LoginMain() {
     const navigate = useNavigate()
     const moveMain = () => {
         navigate('/Main',

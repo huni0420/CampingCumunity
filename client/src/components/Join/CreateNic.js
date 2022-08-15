@@ -13,7 +13,7 @@ export default function CreateNic( props ) {
         e.preventDefault();
         addMember()
         .then((res) => {
-            console.log(res.data)
+            //console.log(res.data)
         })
         .then(setNicname(''));
     }

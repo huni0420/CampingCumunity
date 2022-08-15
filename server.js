@@ -22,20 +22,23 @@ const connection = mysql.createConnection({
 connection.connect();
 
 
-// 닉네임을 이용해서 DB에서 맞는 닉네임의 데이터를 client에 전달
-app.get('/api/myboard',(req, res) => {
-  // ?[파라메터 명]=[파라메터 값] 으로 온 요청을 받는다
-  const nicname = req.query.nicname;  // req.query.[파라메터 명]은 [파라메터 값]이 된다.
-  //console.log(num); // 1
-
-  connection.query(
-    'SELECT * FROM cc_camp.Board WHERE nicname = ?', [nicname]
-    ,(err, rows, field)=>{
-      res.send(rows);
+//닉네임과 닉네임으로 쓴 글에 닉네임을 변경 병경하기위해 사용
+app.post('/api/updatenicname', (req, res) => {
+  let nicnameSql = 'UPDATE cc_camp.Users SET nicname = ? WHERE nicname = ?'
+  let boardInNicnameSql = 'UPDATE cc_camp.Board SET nicname = ? WHERE nicname = ?'
+  let newNicname = req.body.newNicname;
+  let nicname = req.body.nicname;
+  let params = [newNicname, nicname];
+  connection.query(nicnameSql, params, 
+    (err, rows, fields) => {
+      console.log('성공1')
     }
   )
+  connection.query(boardInNicnameSql, params,
+    (err, rows, fields) => {
+      console.log('성공2')
+    })
 })
-
 
 //존재하지 않는 회원이면 nicname생성
 app.post('/api/createnicname', (req, res) => {
@@ -67,7 +70,7 @@ app.post('/api/check_id', (req, res) => {
 })
 
 // accessToken을 가지고 구글에 사용자 정보 요청
-app.post('/oauth/google', async (req, res) => {
+app.post('/api/oauth/google', async (req, res) => {
   const {accessToken} = req.body;
   //console.log(accessToken);
   const { data } = await axios.get(
@@ -104,14 +107,36 @@ app.get('/api/post',(req, res) => {
   )
 })
 
-// 게시판목록을 전부 불러옴
+// 게시판목록을 불러옴
 app.get('/api/board', (req, res) => {
-  connection.query(
-    "SELECT * FROM cc_camp.Board",
-    (err, rows, fields) => {
+  const title = req.query.title
+  const nicname = req.query.nicname
+
+  if( title != '' && title != undefined){
+    const url = 'SELECT * FROM cc_camp.Board WHERE title LIKE ?'
+    const params = ['%'+title+'%']
+    connection.query(url, params, (err,rows,field)=>{
       res.send(rows);
-    }
-  )
+      //console.log("ti",rows)
+    })
+  }
+  else if( nicname != '' && nicname != undefined ){
+    const url = 'SELECT * FROM cc_camp.Board WHERE nicname LIKE ?'
+    const params = ['%'+nicname+'%']
+    connection.query(url, params, (err,rows,field)=>{
+      res.send(rows);
+      //console.log("ni",rows)
+    })
+  }
+  else {
+    connection.query(
+      "SELECT * FROM cc_camp.Board",
+      (err, rows, fields) => {
+        res.send(rows);
+      //console.log("al",rows)
+      }
+    )
+  }
 })
 
 // 유튜브에서 가져온 리스트를 client에 전달
@@ -302,33 +327,4 @@ app.get('/api/youtube', (req, res) => {
     ])
 })
 
-
 app.listen(port, ()=> console.log(`Listening on port ${port}`));
-
-
-//[
-//  {
-//      'id' : 1,
-//      'image' : 'https://placeimg.com/64/64/1',
-//      'name' : '동빈',
-//      'birthday' : '920420',
-//      'gender' : '남자',
-//      'job' : '프로그래머'
-//  },
-//  {
-//      'id' : 2,
-//      'image' : 'https://placeimg.com/64/64/2',
-//      'name' : '길동',
-//      'birthday' : '981220',
-//      'gender' : '남자',
-//      'job' : '대학생'
-//  },
-//  {
-//      'id' : 3,
-//      'image' : 'https://placeimg.com/64/64/3',
-//      'name' : '케이',
-//      'birthday' : '940814',
-//      'gender' : '남자',
-//      'job' : '가수'
-//  },
-//]

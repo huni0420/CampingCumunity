@@ -4,11 +4,13 @@
     display: grid;
     grid-template-rows: 60px 1fr;
 }
+
 .nav {
     background-color: aquamarine;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
 .articleList{
     background-color: darkolivegreen;
     margin: auto;

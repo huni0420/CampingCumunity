@@ -1,9 +1,8 @@
 .WriteBg{
     height: 100vh;
     background-color: white;
-    /*display: grid;
-    grid-template-rows: 30px 1fr;*/
 }
+
 input, textarea:focus {outline: 2px solid rgba(128, 128, 128, .1);}
 form{
     padding-top: 30px;
@@ -20,12 +19,14 @@ form{
     border: 0;
     box-shadow: 7px 15px 15px -9px rgba(128, 128, 128, .3);
 }
+
 .submitButton{
     display: grid;
     grid-template-columns: 60px 60px;
     gap: 60px;
     margin: auto;
 }
+
 .submitButton input {
     border: 0;
     width: 90px;
@@ -33,6 +34,7 @@ form{
     border-radius: 15px;
     background-color: rgb(100, 149, 273, .5);
 }
+
 .submitButton button{
     border: 0;
     border-radius: 15px;
@@ -41,7 +43,3 @@ form{
     background-color: rgb(128, 128, 128, .5);
 
 }
-/*.inputSubject{
-    width: 100px;
-    height: 100px;
-}*/

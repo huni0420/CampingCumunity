@@ -2,6 +2,7 @@
     background-color: white;
     height: 100vh;
 }
+
 .login{
     margin: auto;
     background-color: white;
@@ -17,9 +18,11 @@
     display: grid;
     grid-template-rows: 90px 1px 1fr 1fr;
 }
+
 .login h1{
     transform: translate(-25%,10%);
 }
+
 .login .line{
     transform: translate(25%,-300%);
     width: 80px;
@@ -42,6 +45,7 @@
     display: grid;
     transform: translate(10%,0);
 }
+
 .login .loginBtn a{
     width: 200px;
     height: 30px;
@@ -51,6 +55,7 @@
     background-color: cornflowerblue;
     font-size: 0.9rem;
 }
+
 .login .loginBtn button{
     width: 200px;
     height: 30px;
@@ -60,6 +65,7 @@
     background-color: cornflowerblue;
     font-size: 0.9rem;
 }
+
 .login .loginBtn :nth-child(1){
     background-color: tomato;
 }

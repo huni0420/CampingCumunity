@@ -1,7 +1,9 @@
 import CreateNic from '../components/Join/CreateNic'
+
+import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 export default function Join() {        
     const [data, setData] = useState({})
@@ -20,7 +22,7 @@ export default function Join() {
     // server에서 받아온 유저정보를 data에 담기
     useEffect(()=>{
         googleOauth()
-        .then(res => setData(res))//setData(res)
+        .then(res => setData(res))
     },[]);
 
     useEffect(()=>{
@@ -34,22 +36,17 @@ export default function Join() {
     const googleOauth = async () => {
         const parsedHash = window.location.hash.substring(1);        
         const accessToken = parsedHash.split('&')[0].split('=')[1];
-        //
+
         // response값이 object형식으로 받아져와 data로 받으면 object그대로 받고
         // {data}라고하면 object안의 data:{}를 가져와서 쓸수있다
-        const { data } = await axios.post('/oauth/google',{ accessToken });
-        //
-        console.log(data)
+        const { data } = await axios.post('/api/oauth/google',{ accessToken });
+
         return data
     }
 
     const checkMember = async () => {
-        //const emailData = {
-        //    email: data.email
-        //}
-        //console.log(emailData)
         const checknum = await axios.post('/api/check_id', { email: data.email });
-        //console.log(checknum);
+
         return checknum;
     }
     console.log(num[1]);

@@ -1,20 +1,13 @@
 import './css/Main.css'
 
-import Nav from '../components/Nav/MainNav/MainNav'
+import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
 
-//import UserBoard from '../routes/Board'
-//import CampingContent from '../routes/CampingContent'
-//import CampingYoutube from '../routes/Youtube'
-//import CookiesSave from '../CookiesSave'
-
 import { useLocation } from 'react-router-dom';
-//import cookies from 'react-cookies'
 
 export default function Main() {
     const location = useLocation();
     const nic = location.state.nic;
-    console.log(nic);
 
     return (
     <>
