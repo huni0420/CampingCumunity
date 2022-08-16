@@ -1,4 +1,4 @@
-.mainBoardBg {
+/*.meta-bg {
     height: 100vh;
     background-color: aliceblue;
     display: grid;
@@ -9,7 +9,7 @@
     background-color: aquamarine;
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
+}*/
 
 /*.navBtn {
     margin-top: 6px;
@@ -21,13 +21,13 @@
     border: 0;
 }*/
 
-.mainBoard{
-    background-color: bisque;
+.board{
+    background-color: white;
     display: grid;
     grid-template-rows: 80px 1fr;
 }
 
-.subHeader{
+.board__content{
     background-color: aqua;
     margin: auto;
     display: grid;
@@ -35,50 +35,17 @@
     gap: 10px;
 }
 
-.subHeader .subHeaderInfo{
+.board__write{
     display: grid;
     grid-template-columns: 40px 100px;
     gap: 140px;
 }
-
-.subHeader .subHeaderInfo a{
-    text-decoration: none;
-}
-
-.subHeader .subHeaderSearch{
-    
-}
-
-.articleList{
-    background-color: darkolivegreen;
-    margin: auto;
-    width: 360px;
-}
-
-.articleList .articleListItem{
+.board__search-content{
     display: grid;
-    grid-template-columns: 1fr 100px;
-    height: 80px;
-    gap: 30px;
+    grid-template-columns: 60px 190px 60px;
+    gap: 5px;
 }
-
-.articleList .articleListItem .articleListItemContent{
-    margin: auto;
-}
-
-.articleList .articleListItem .articleListItemContent .articleListItemContentTitle{
-    text-align: left;
-}
-
-.articleList .articleListItem .articleListItemContent .articleListItemMeta{
-    display: grid;
-    grid-template-columns: 80px 100px;
-}
-
-.articleList .articleListItem .articleListItemContent .articleListItemMeta .articleListItemMetaTime{
-    margin: auto;
-}
-
-.articleList .articleListItem .articleListItemContent .articleListItemMeta .articleListItemMetaUser{
+.board__list{
+    background-color: white;
     margin: auto;
 }

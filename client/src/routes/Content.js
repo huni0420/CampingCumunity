@@ -14,28 +14,28 @@ export default function MainContent() {
 
     const [blogContent, setBlogContent] = useState([]);
 
-    useEffect(()=>{
-        SearchBlog()
-        .then(res => setBlogContent(res))
-    })
+    //useEffect(()=>{
+    //    SearchBlog()
+    //    .then(res => setBlogContent(res))
+    //})
 
-    const SearchBlog = async () => {
-        const {data:{items}} = await axios.get('/v1/search/blog',{
-            params:{
-              query: '캠핑',
-              display: 20
-            },
-            headers: {
-              'X-Naver-Client-Id': process.env.REACT_APP_NAVER_ID_KEY,
-              'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_SECRET_KEY
-            }
-        });
-        return items
-    }
+    //const SearchBlog = async () => {
+    //    const {data:{items}} = await axios.get('/v1/search/blog',{
+    //        params:{
+    //          query: '캠핑',
+    //          display: 
+    //        },
+    //        headers: {
+    //          'X-Naver-Client-Id': process.env.REACT_APP_NAVER_ID_KEY,
+    //          'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_SECRET_KEY
+    //        }
+    //    });
+    //    return items
+    //}
 
     return (
         <>
-        <div className="CampingContentBg">
+        <div className="meta-bg">
             <div className="nav">
                     <Nav nic={nic} />
                     <ToMyPage nic= { nic } />

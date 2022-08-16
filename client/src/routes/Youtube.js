@@ -22,7 +22,7 @@ export default function MainUtube() {
     //console.log(youtubeApi)
     return (
         <>
-        <div className="mainUtubeBg">
+        <div className="meta-bg">
             <div className="nav">
                     <Nav nic={nic}/>
                     <ToMyPage nic= { nic } />

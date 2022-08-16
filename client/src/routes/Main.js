@@ -11,7 +11,7 @@ export default function Main() {
 
     return (
     <>
-        <div className='mainBg'>
+        <div className='meta-bg'>
             <div className="nav">
                 <Nav nic = { nic } />
                 <ToMyPage nic= { nic } />

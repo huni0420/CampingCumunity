@@ -15,7 +15,12 @@ export default function CreateNic( props ) {
         .then((res) => {
             //console.log(res.data)
         })
-        .then(setNicname(''));
+        .then(setNicname(''))
+        .then(moveToLogin)
+    }
+    
+    const moveToLogin = () =>{
+        document.location.href = '/'
     }
 
     const addMember = () =>{

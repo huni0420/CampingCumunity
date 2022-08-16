@@ -52,7 +52,7 @@ export default function Join() {
     console.log(num[1]);
     return (
         <>
-          { num[1] ? move() : setTimeout((<CreateNic email={data.email}/>),200)}
+          { num[1] ? move() : <CreateNic email={data.email}/>}
         </>
     );
 }

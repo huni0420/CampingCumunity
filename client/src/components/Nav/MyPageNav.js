@@ -1,6 +1,7 @@
 import './css/MyPageNav.css';
 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function MainNav( props ) {
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ export default function MainNav( props ) {
             }
         })    
     }
+
     const moveMyPage = () => {
         navigate('/MyPage',
         {
@@ -20,6 +22,7 @@ export default function MainNav( props ) {
             }
         })    
     }
+    
     const moveMyInfo = () => {
         navigate('/MyInfo',
         {
@@ -30,8 +33,11 @@ export default function MainNav( props ) {
     }
 
     const withdrawal = () =>{
-        const url = '/api/delete'
-        
+        const url = `/api/deleteuser?nicname=${props.nic}`
+        axios.get(url)
+        .then(axios.get(`/api/deleteboard?nicname=${props.nic}`))
+        .then(res => alert(res))
+        .then(document.location.href='/')
     }
 
     return (
@@ -41,7 +47,7 @@ export default function MainNav( props ) {
                     <li><button onClick={moveMain}>Main</button></li>
                     <li><button onClick={moveMyPage}>MyContent</button></li>
                     <li><button onClick={moveMyInfo}>MyInfo</button></li>
-                    <li><button onClick={withdrawal}></button>회원탈퇴</li>
+                    <li><button onClick={withdrawal}>회원탈퇴</button></li>
                 </ul>
             </nav>
         </>

@@ -1,24 +1,22 @@
 import { Link } from "react-router-dom";
+import './BoardList.css'
 
 export default function BoardList( props ){
     return(
         <>
-        <article className="articleListItem">
-            <div className="articleListItemContent">
-                <div className="articleListItemContentTitle"> 
+        {/*<article className="articleListItem">*/}
+            <div className="board__list-item">
+                <div className="board__list-title"> 
                     <Link to={`/Post/${props.data.boardnum}`}>
                         <span>{props.data.title}</span>
                     </Link>
                 </div>
-                <div className="articleListItemMeta">
-                    <div className="articleListItemMetaTime"><span>8시간전</span></div>
-                    <div className="articleListItemMetaUser"><span>{props.data.nicname}</span></div>
+                <div className="articleListItemMeta board__list-meta">
+                    <div className="articleListItemMetaUser board__list-user"><span>{props.data.nicname}</span></div>
+                    <div className="articleListItemMetaTime board__list-time"><span>8시간전</span></div>
                 </div>
             </div>
-            {/*<div className="articleListItemThumnail">
-                <img src="" alt="아직없음" />
-            </div>*/}
-        </article>
+        {/*</article>*/}
         </>
     );
 }

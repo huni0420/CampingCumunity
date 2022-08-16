@@ -21,6 +21,27 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+app.get('/api/deleteboard', (req, res) => {
+  const nic = req.query.nicname;
+
+  connection.query(
+    'DELETE FROM cc_camp.Board WHERE nicname = ?', [nic],
+    (err, rows, field) => {
+      res.send('회원 탈퇴가 완료되었습니다.')
+    }
+  )
+})
+
+app.get('/api/deleteuser', (req, res) => {
+  const nic = req.query.nicname;
+
+  connection.query(
+    'DELETE FROM cc_camp.Users WHERE nicname = ?', [nic],
+    (err, rows, field) => {
+      res.send('회원 탈퇴가 완료되었습니다.')
+    }
+  )
+})
 
 //닉네임과 닉네임으로 쓴 글에 닉네임을 변경 병경하기위해 사용
 app.post('/api/updatenicname', (req, res) => {
@@ -45,12 +66,16 @@ app.post('/api/createnicname', (req, res) => {
   let sql = 'INSERT INTO cc_camp.Users (nicname, email) VALUES (?, ?)';
   let nicname = req.body.nicname;
   let email = req.body.email;
-  console.log(nicname)
-  console.log(email)
+  //console.log(nicname)
+  //console.log(email)
   let params = [nicname, email];
   connection.query(sql, params,
     (err, rows, fields) => {
-      res.send(rows);
+      try {
+        res.send(rows);
+      } catch (erorr) {
+        erorr(err);
+      }
     })
 })
 

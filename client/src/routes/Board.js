@@ -59,36 +59,33 @@ export default function MainBoard() {
 
     
     return (
-        <>
-        <div className="mainBoardBg">
+        <div className="meta-bg">
             <div className="nav">
                     {/*<button className='navBtn'></button>*/}
                     <Nav nic= { nic } />
                     <ToMyPage nic= { nic }/>
             </div>
-            <div className="mainBoard">
-
-                <div className="subHeader">
-                    <div className="subHeaderInfo">
+            <div className="board">
+                <div className="board__content">
+                    <div className="board__write">
                         <a href="">전체<img src=""/></a>
                         <button onClick={moveWrite}>글쓰기</button>
                     </div>
-                    <div className="subHeaderSearch">
-                        <select onChange={selectValue} id="subHeaderSearch">
+                    <div className="board__search-content">
+                        <select onChange={selectValue} >  {/*id="subHeaderSearch"*/}
                             <option value="title">제목</option>
                             <option value="nicname">작성자</option>
                         </select>
-                        <input onChange={searchText} type="text" placeholder="검색" className="subHeaderSearchInput" />
+                        <input onChange={searchText} type="text" placeholder="검색" />
                         <button onClick={searchStart}>검색</button>
                     </div>
                 </div>
-                <section className="articleList">
+                <section className="board__list">
                 {boardApi ? boardApi.map(board =>( 
                     <BoardList key={board.boardnum} data={board}/>
                 )) :"아직안됨"}
                 </section>
             </div>
         </div>
-        </>
     );
 }

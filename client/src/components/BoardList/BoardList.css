@@ -1,0 +1,18 @@
+.board__list-item{
+    margin: auto;
+    box-shadow: 5px 5px 5px rgb(170, 170, 170, 0.6);
+    width: 320px;
+}
+
+.board__list-title{
+    text-align: left;
+}
+
+.board__list-meta{
+    display: grid;
+    grid-template-columns: 80px 100px;
+}
+
+.board__list-user, .board__list-time{
+    margin: auto;
+}
