@@ -1,16 +1,3 @@
-.CampingContentBg {
-    height: 100vh;
-    background-color: darkcyan;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-}
-
-.nav {
-    background-color: darkkhaki;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
 /*.navBtn {
     margin-top: 6px;
     margin-left: 6px;
@@ -20,7 +7,31 @@
     height: 50px;
     border: 0;
 }*/
+.camping-content {
+    display: grid;
+    gap: 8px;
+}
 
-.CampingContent{
-    background-color: cyan;
+.camping-content__item {
+    /*margin: auto;*/
+    /*width: 320px;*/
+    /*grid-template-rows: 35px;*/
+    display: grid;
+    gap: 5px;
+    text-align: left;
+    box-shadow: 1px 3px 5px 1px rgb(170, 170, 170, 0.6);
+}
+
+/* 
+    -- white-space 속성은 하나의 html element 내부의 white-space와 line breaks에 관련되어있다. 
+    이 속성에 nowrap값을 설정하여 html 엘리먼트 내부에 위치한 텍스트가 다음줄로 line break하는것을 막아준다.
+    -- white-space 속성에 nowrap값을 부여하였기 때문에 넘치는 문자열은 한 줄로 표기된다. overflow 속성에 hidden 
+    값을 줘서 컨테이너의 크기를 넘어서는 문자열이 출력되지 않도록 한다.
+    -- text-overflow: ellipsis 선언을 하여 컨테이너의 크기를 넘어서는 문자열이 잘려나갔다는 사실을 사용자에게 
+    알려주기 위하여 ... 기호를 표시해준다.
+*/
+.camping-content__item a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

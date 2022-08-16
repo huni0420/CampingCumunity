@@ -10,7 +10,6 @@ export default function Main() {
     const nic = location.state.nic;
 
     return (
-    <>
         <div className='meta-bg'>
             <div className="nav">
                 <Nav nic = { nic } />
@@ -20,6 +19,5 @@ export default function Main() {
                 <h1>메인입니다 {nic}</h1>
             </div>
         </div>
-    </>
     ) 
 }

@@ -1,13 +1,19 @@
 .board__list-item{
-    margin: auto;
     box-shadow: 5px 5px 5px rgb(170, 170, 170, 0.6);
-    width: 320px;
+    height: 70px;
+    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
 .board__list-title{
+    padding-top: 6px;
     text-align: left;
 }
 
+.board__list-title span {
+    color: black;
+}
 .board__list-meta{
     display: grid;
     grid-template-columns: 80px 100px;

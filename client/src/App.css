@@ -9,6 +9,7 @@
   background-color: aliceblue;
   display: grid;
   grid-template-rows: 60px 1fr;
+  gap: 10px;
 }
 
 .nav {

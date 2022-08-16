@@ -1,0 +1,24 @@
+.login-confirm {
+    /*display: grid;*/
+    /*justify-content: end;*/
+    /*justify-content: stretch;*/
+}
+.login-confirm {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    justify-content: end;
+    align-items: center;
+}
+
+.mypage-btn{
+    background-image: url(../../../../public/icon_login.svg);
+    background-color: white;
+    background-blend-mode: multiply;
+    /*background-size: cover;*/
+    width: 30px;
+    height: 30px;
+}
+
+.login-confirm--nic {
+    color: rgb(48, 152, 216);
+}

@@ -14,33 +14,32 @@ export default function MainContent() {
 
     const [blogContent, setBlogContent] = useState([]);
 
-    //useEffect(()=>{
-    //    SearchBlog()
-    //    .then(res => setBlogContent(res))
-    //})
+    useEffect(()=>{
+        SearchBlog()
+        .then(res => setBlogContent(res))
+    })
 
-    //const SearchBlog = async () => {
-    //    const {data:{items}} = await axios.get('/v1/search/blog',{
-    //        params:{
-    //          query: '캠핑',
-    //          display: 
-    //        },
-    //        headers: {
-    //          'X-Naver-Client-Id': process.env.REACT_APP_NAVER_ID_KEY,
-    //          'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_SECRET_KEY
-    //        }
-    //    });
-    //    return items
-    //}
-
+    const SearchBlog = async () => {
+        const {data:{items}} = await axios.get('/v1/search/blog',{
+            params:{
+              query: '캠핑',
+              display: 10
+            },
+            headers: {
+              'X-Naver-Client-Id': process.env.REACT_APP_NAVER_ID_KEY,
+              'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_SECRET_KEY
+            }
+        });
+        return items
+    }
+    //console.log(blogContent);
     return (
-        <>
         <div className="meta-bg">
             <div className="nav">
                     <Nav nic={nic} />
                     <ToMyPage nic= { nic } />
             </div>
-            <div className="CampingContent">
+            <div className="camping-content">
                 {blogContent ? blogContent.map((content) => {
                     // SUMMARY:
                     // 네이버에서 검색API로 가져온 data중 title에는 검색query로 검색되는 부분에 <b></b>가 붙어서 온다
@@ -53,16 +52,16 @@ export default function MainContent() {
                     // ect:
                     // &amp;는 왜 붙는지 모르겠지만 같이 붙어와서 삭제해주었다.
                     //
-                    let title = (((content.title).replace(/<b>/g,'')).replace(/<\/b>/g,'')).replace(/&amp;/g,'')
+                    let title = (((content.title).replace(/<b>/g,'')).replace(/<\/b>/g,'')).replace(/&amp;/g,'\&')
+                    let postdate = content.postdate.substr(0, 4).concat('-') + content.postdate.substr(4, 2).concat('-') + content.postdate.substr(6, 2);
                     return(
-                        <div key={title}>
-                            {title}
-                            <a href={content.link}>{content.link}</a>
+                        <div className="camping-content__item" key={title}>
+                            <a title={title} href={content.link}>{title}</a>
+                            <p>{postdate}</p>
                         </div>
                     )
                 }):"Loading..."}
             </div>
         </div>
-        </>
     );
 }

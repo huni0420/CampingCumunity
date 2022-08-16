@@ -1,51 +1,63 @@
-/*.meta-bg {
-    height: 100vh;
-    background-color: aliceblue;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-}
-
-.nav {
-    background-color: aquamarine;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}*/
-
-/*.navBtn {
-    margin-top: 6px;
-    margin-left: 6px;
-    background-image: url('../../public/berger-menu.png');
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border: 0;
-}*/
-
-.board{
+.board {
     background-color: white;
     display: grid;
     grid-template-rows: 80px 1fr;
+    gap: 10px;
 }
 
-.board__content{
-    background-color: aqua;
-    margin: auto;
+.board__content {
+    background-color: white;
+    /*margin: auto;*/
+    align-items: center;
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
 }
 
-.board__write{
+.board__write {
     display: grid;
-    grid-template-columns: 40px 100px;
+    grid-template-columns: 50px 1fr 30px;
     gap: 140px;
 }
-.board__search-content{
-    display: grid;
-    grid-template-columns: 60px 190px 60px;
-    gap: 5px;
-}
-.board__list{
+.board__write button {
+    background-image: url(../../../public/icon-write.png);
     background-color: white;
-    margin: auto;
+    background-blend-mode: multiply;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+}
+
+.board__search-content {
+    display: grid;
+    gap: 5px;
+    justify-content: end;
+    justify-items: center;
+    grid-template-columns: 80px 180px 30px;
+}
+
+.board__search-content select {
+    background-color: rgb(180, 147, 147, 0.2);
+    /*border-bottom: 1px solid rgb(180, 147, 147, 0.2);*/
+}
+
+.board__search-content input {
+    border-bottom: 1px solid rgb(180, 147, 147, 0.5);
+}
+
+.board__search-content  button {
+    background-image: url(../../../public/icon-search.png);
+    background-color: white;
+    background-blend-mode: multiply;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+}
+
+.board__search-content button:active {
+    background-image: url(../../../public/icon-search-click.png);
+}
+
+.board__list {
+    border-top: 1px solid rgb(180, 147, 147, 0.1);
 }

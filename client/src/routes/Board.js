@@ -68,8 +68,9 @@ export default function MainBoard() {
             <div className="board">
                 <div className="board__content">
                     <div className="board__write">
-                        <a href="">전체<img src=""/></a>
-                        <button onClick={moveWrite}>글쓰기</button>
+                        <p>전체 글</p>
+                        <span></span>
+                        <button onClick={moveWrite}></button>
                     </div>
                     <div className="board__search-content">
                         <select onChange={selectValue} >  {/*id="subHeaderSearch"*/}
@@ -77,11 +78,11 @@ export default function MainBoard() {
                             <option value="nicname">작성자</option>
                         </select>
                         <input onChange={searchText} type="text" placeholder="검색" />
-                        <button onClick={searchStart}>검색</button>
+                        <button onClick={searchStart}></button>
                     </div>
                 </div>
                 <section className="board__list">
-                {boardApi ? boardApi.map(board =>( 
+                {boardApi ? boardApi.slice(0).reverse().map(board =>( 
                     <BoardList key={board.boardnum} data={board}/>
                 )) :"아직안됨"}
                 </section>

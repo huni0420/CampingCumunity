@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import './css/NavConnectionConfirm.css'
 export default function ToMyPage( props ) {
     const navigate = useNavigate()
     const moveMyPage = () => {
@@ -12,16 +12,19 @@ export default function ToMyPage( props ) {
     }
     return (
         <>
-            {props.nic ? 
-            <div>
-                <span>환영합니다 </span>
-                <button onClick={moveMyPage} ><span>{props.nic}</span></button>님
-                <Link to={'/'}>로그아웃</Link>
+            {props.nic ?
+            <div className="login-confirm">
+                <div className="login-confirm--text">
+                    <p>환영합니다! </p>
+                    <p><span className="login-confirm--nic">{props.nic}</span> 님</p>
+                </div>
+                <button className="mypage-btn" onClick={moveMyPage}></button>
             </div>
             :
             <div>
                 <Link to={'/LoginMain'}>로그인</Link>
-            </div>}
+            </div>
+            }
         </>
     );
 }

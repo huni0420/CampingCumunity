@@ -40,8 +40,7 @@ export default function MyInfo() {
     }
 
     return (
-        <>
-        <div className='myInfoBg'>
+        <div className='meta-bg'>
             <div className="nav">
                 <Nav nic = { nic } />
                 <NavConnectionConfirm nic= { nic } />
@@ -55,6 +54,5 @@ export default function MyInfo() {
                 </form>
             </div>
         </div>
-        </>
     );
 }

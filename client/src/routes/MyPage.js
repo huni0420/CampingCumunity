@@ -20,8 +20,7 @@ export default function MyPage() {
     },[]);
 
     return (
-        <>
-        <div className='myPageBg'>
+        <div className='meta-bg'>
             <div className="nav">
                 <Nav nic = { nic } />
                 <NavConnectionConfirm nic= { nic } />
@@ -34,6 +33,5 @@ export default function MyPage() {
                 </section>
             </div>
         </div>
-        </>
     );
 }

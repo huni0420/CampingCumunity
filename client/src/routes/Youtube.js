@@ -21,12 +21,12 @@ export default function MainUtube() {
       },[])
     //console.log(youtubeApi)
     return (
-        <>
         <div className="meta-bg">
             <div className="nav">
                     <Nav nic={nic}/>
                     <ToMyPage nic= { nic } />
             </div>
+            <div className="mainUtube">
             {youtubeApi ? youtubeApi.map((youtube) => {  
                 return(
                     youtube.items.map((item)=>{
@@ -34,22 +34,20 @@ export default function MainUtube() {
                     const { title, thumbnails ={} } = snippet;
                     const { medium,high = {} } = thumbnails;
                     return(
-                    <div key={title} className="mainUtube">
-                            <section className="articleList">
-                                <li>
-                                    <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
-                                        <p>
-                                            <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
-                                        </p>
-                                        <h3>{title}</h3>
-                                    </a>
-                                </li>
-                            </section>
-                        </div>
+                        <section key={title} className="articleList">
+                            <li>
+                                <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
+                                    <p>
+                                        <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
+                                    </p>
+                                    <h3>{title}</h3>
+                                </a>
+                            </li>
+                        </section>
                     );
                 }));
             }):"아직안됨"}
+            </div>
         </div>
-        </>
     );
 }
