@@ -21,3 +21,27 @@
 .articleList h3 {
     color: rgb(102, 96, 96);
 }
+
+
+@media only screen and (min-width: 768px) {
+    .mainUtube {
+        /*margin-left: auto;
+        margin-right: auto;*/
+        margin: auto;
+        width: 700px;
+    }
+
+    .board__list {
+        margin-left: auto;
+        margin-right: auto;
+        width: 700px;
+    }
+
+    .articleList li a p img {
+        width: 450px;
+        height: 250px;
+    }
+    .articleList li a h3 {
+        width: 450px;
+    }
+}

@@ -1,6 +1,8 @@
 import './css/LoginMain.css';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 const googleWithLogin = () =>{
     window.location.href =`https://accounts.google.com/o/oauth2/auth?`+
@@ -12,6 +14,21 @@ const googleWithLogin = () =>{
 
 export default function LoginMain() {
     const navigate = useNavigate()
+
+    //useEffect(() => {
+    //  let unlisten = navigate.listen((location) => {
+    //    if (navigate.action === 'PUSH') {
+    //    }
+    //    if (navigate.action === 'POP') {
+    //    }
+    //  });
+  
+    //  return () => {
+    //    unlisten();
+    //  };
+    //}, [navigate]);
+
+    
     const moveMain = () => {
         navigate('/Main',
         {
@@ -27,12 +44,12 @@ export default function LoginMain() {
                     <h1>Login</h1>
                     <div className='line'></div>
                     <div className='loginDescription'>
-                    <h3>캠핑커뮤니티 로그인 하기</h3>
-                    <p>캠핑을 즐기는 여러분, 지금 함께 하세요</p>
+                        <h3>캠핑커뮤니티 로그인 하기</h3>
+                        <p>캠핑을 즐기는 여러분, 지금 함께 하세요</p>
                     </div>
                     <div className='loginBtn'>
                         <button onClick={googleWithLogin} >Sign in with Google</button>
-                        <a href='/'>Sign in with KaKao</a>
+                        <button>Sign in with KaKao</button>
                         <button onClick={moveMain}>로그인없이 시작하기</button>
                     </div>
                 </div>

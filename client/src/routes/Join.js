@@ -49,7 +49,7 @@ export default function Join() {
 
         return checknum;
     }
-    console.log(num[1]);
+    //console.log(num[1]);
     return (
         <>
           { num[1] ? move() : <CreateNic email={data.email}/>}

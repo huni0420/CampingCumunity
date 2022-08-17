@@ -5,16 +5,21 @@
 }
 .login-confirm {
     display: grid;
-    grid-template-columns: 1fr 30px;
+    grid-template-columns: 1fr 20px;
     justify-content: end;
-    align-items: center;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+.login-confirm--text {
+    font-size: 0.9rem;
+    padding-left: 20px;
+    padding-top: 5px;
 }
 
 .mypage-btn{
     background-image: url(../../../../public/icon_login.svg);
     background-color: white;
     background-blend-mode: multiply;
-    /*background-size: cover;*/
     width: 30px;
     height: 30px;
 }

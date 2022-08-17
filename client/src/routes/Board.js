@@ -61,9 +61,8 @@ export default function MainBoard() {
     return (
         <div className="meta-bg">
             <div className="nav">
-                    {/*<button className='navBtn'></button>*/}
-                    <Nav nic= { nic } />
-                    <ToMyPage nic= { nic }/>
+                <Nav nic= { nic } />
+                <ToMyPage nic= { nic }/>
             </div>
             <div className="board">
                 <div className="board__content">

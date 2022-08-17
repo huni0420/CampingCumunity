@@ -15,8 +15,7 @@ export default function ToMyPage( props ) {
             {props.nic ?
             <div className="login-confirm">
                 <div className="login-confirm--text">
-                    <p>환영합니다! </p>
-                    <p><span className="login-confirm--nic">{props.nic}</span> 님</p>
+                    <p><span className="login-confirm--nic">{props.nic}</span>님 환영합니다! </p>
                 </div>
                 <button className="mypage-btn" onClick={moveMyPage}></button>
             </div>

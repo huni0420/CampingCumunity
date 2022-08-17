@@ -61,3 +61,17 @@
 .board__list {
     border-top: 1px solid rgb(180, 147, 147, 0.1);
 }
+
+@media only screen and (min-width: 768px) {
+    .board__content {
+        margin-left: auto;
+        margin-right: auto;
+        width: 700px;
+    }
+
+    .board__list {
+        margin-left: auto;
+        margin-right: auto;
+        width: 700px;
+    }
+}

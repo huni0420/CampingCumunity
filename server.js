@@ -38,7 +38,7 @@ app.get('/api/deleteuser', (req, res) => {
   connection.query(
     'DELETE FROM cc_camp.Users WHERE nicname = ?', [nic],
     (err, rows, field) => {
-      res.send('회원 탈퇴가 완료되었습니다.')
+      res.send({alarm:'회원 탈퇴가 완료되었습니다.'})
     }
   )
 })
