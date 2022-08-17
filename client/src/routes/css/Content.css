@@ -10,6 +10,7 @@
 .camping-content {
     display: grid;
     gap: 8px;
+    padding-top: 50px;
 }
 
 .camping-content__item {
