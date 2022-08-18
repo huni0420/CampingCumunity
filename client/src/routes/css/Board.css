@@ -17,7 +17,7 @@
 .board__write {
     display: grid;
     grid-template-columns: 50px 1fr 30px;
-    gap: 140px;
+    /*gap: 14px;*/
 }
 .board__write button {
     background-image: url(../../../public/icon-write.png);
@@ -66,12 +66,12 @@
     .board__content {
         margin-left: auto;
         margin-right: auto;
-        width: 700px;
+        width: 768px;
     }
 
     .board__list {
         margin-left: auto;
         margin-right: auto;
-        width: 700px;
+        width: 768px;
     }
 }

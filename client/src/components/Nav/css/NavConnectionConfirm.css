@@ -17,13 +17,26 @@
 }
 
 .mypage-btn{
-    background-image: url(../../../../public/icon_login.svg);
+    background-image: url(../../../../public/icon-login.png);
     background-color: white;
+    background-size: cover;
     background-blend-mode: multiply;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
 }
 
 .login-confirm--nic {
     color: rgb(48, 152, 216);
+}
+
+.nologin-confirm {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 20px;
+}
+.nologin-confirm :nth-child(2) {
+    background-color: rgb(41, 41, 41);
+    border-radius: 15px;
+    color: white;
 }

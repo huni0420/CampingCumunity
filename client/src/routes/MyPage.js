@@ -19,6 +19,7 @@ export default function MyPage() {
         .then((res)=> setMyBoard(res.data))
     },[]);
 
+    
     return (
         <div className='meta-bg'>
             <div className="nav">

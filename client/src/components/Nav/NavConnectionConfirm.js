@@ -20,7 +20,8 @@ export default function ToMyPage( props ) {
                 <button className="mypage-btn" onClick={moveMyPage}></button>
             </div>
             :
-            <div>
+            <div className="nologin-confirm">
+                <p>Camping Cumunity!</p>
                 <Link to={'/LoginMain'}>로그인</Link>
             </div>
             }
