@@ -15,20 +15,6 @@ const googleWithLogin = () =>{
 export default function LoginMain() {
     const navigate = useNavigate()
 
-    //useEffect(() => {
-    //  let unlisten = navigate.listen((location) => {
-    //    if (navigate.action === 'PUSH') {
-    //    }
-    //    if (navigate.action === 'POP') {
-    //    }
-    //  });
-  
-    //  return () => {
-    //    unlisten();
-    //  };
-    //}, [navigate]);
-
-    
     const moveMain = () => {
         navigate('/Main',
         {
@@ -37,6 +23,11 @@ export default function LoginMain() {
             }
         })
     }
+    
+    const kakaoLogin = () => {
+        alert('아직 구현중에 있습니다.')
+    }
+
     return (
         <>
             <div className='loginBg'>
@@ -49,7 +40,7 @@ export default function LoginMain() {
                     </div>
                     <div className='loginBtn'>
                         <button onClick={googleWithLogin} >Sign in with Google</button>
-                        <button>Sign in with KaKao</button>
+                        <button onClick={kakaoLogin}>Sign in with KaKao</button>
                         <button onClick={moveMain}>로그인없이 시작하기</button>
                     </div>
                 </div>

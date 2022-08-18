@@ -1,9 +1,19 @@
 import './css/MyPageNav.css';
 
-import { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Hamburger from 'hamburger-react'
 import axios from 'axios';
+import MyPageBurger from '../HambergerBtn/MyPageBurger';
+
+const Nav = styled.nav`
+    width: 100%;
+    height: 65px;
+    //border-bottom: 2px solid #f1f1f1;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+`;
+
 
 export default function MainNav( props ) {
     const navigate = useNavigate()
@@ -46,26 +56,16 @@ export default function MainNav( props ) {
             return;
     }
 
-    const [isOpen, setOpen] = useState(false)
-    const menuRef = useRef(null)
-    useEffect(()=>{
-        if(isOpen===true){
-            menuRef.current.style = 'display: fixed'
-        }else{
-            menuRef.current.style ='display: none;'
-        }
-    },[isOpen])
+    
     return (
         <>
-            <nav><Hamburger toggled={isOpen} toggle={setOpen} duration={0.4}/>
-                <ul ref={menuRef}>
-                    <li className='x-btn'><Hamburger toggled={isOpen} toggle={setOpen} color="white" duration={0.4}/></li>
-                    <li><button onClick={moveMain}>Main</button></li>
-                    <li><button onClick={moveMyPage}>MyContent</button></li>
-                    <li><button onClick={moveMyInfo}>MyInfo</button></li>
-                    <li><button onClick={withdrawal}>회원탈퇴</button></li>
-                </ul>
-            </nav>
+            <Nav>
+            <MyPageBurger nic = {props.nic} 
+                        moveMain = { moveMain }
+                        moveMyPage = { moveMyPage }
+                        moveMyInfo = { moveMyInfo }
+                        withdrawal = { withdrawal } />
+            </Nav>
         </>
     );
 }

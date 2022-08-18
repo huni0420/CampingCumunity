@@ -1,0 +1,21 @@
+.infoChange {
+    margin: auto;
+    width: 400px;
+    height: 100vh;
+    padding-top: 150px;
+}
+
+
+.info-form {
+    padding-top: 50px;
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    gap: 50px;
+}
+
+.info-form button {
+    margin: auto;
+    width: 150px;
+    height: 35px;
+    border-radius: 25px;
+}

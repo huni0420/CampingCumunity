@@ -60,7 +60,7 @@ export default function Write(){
     return (
         <>
         <div className='WriteBg'>
-            <form onSubmit={handleFormSubmit}>
+            <form className='write-Form' onSubmit={handleFormSubmit}>
                 <p>작성자: {nic}</p>
                 <input type="text" onChange={changeTitle} name='title' placeholder="제목" className="inputSubject" />
                 <textarea rows={20} onChange={changeContent} name='content' placeholder="내용" className="inputContent" />

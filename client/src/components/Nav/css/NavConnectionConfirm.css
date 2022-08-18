@@ -1,18 +1,12 @@
 .login-confirm {
-    /*display: grid;*/
-    /*justify-content: end;*/
-    /*justify-content: stretch;*/
-}
-.login-confirm {
+    margin: auto;
     display: grid;
-    grid-template-columns: 1fr 20px;
+    grid-template-columns: 1fr 45px;
     justify-content: end;
-    padding-right: 15px;
     padding-top: 15px;
 }
 .login-confirm--text {
     font-size: 0.9rem;
-    padding-left: 20px;
     padding-top: 5px;
 }
 
@@ -36,7 +30,8 @@
     gap: 20px;
 }
 .nologin-confirm :nth-child(2) {
-    background-color: rgb(41, 41, 41);
+    height: 30px;
+    background-color: #0D2538;
     border-radius: 15px;
     color: white;
 }

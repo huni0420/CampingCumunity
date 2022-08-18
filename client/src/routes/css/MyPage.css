@@ -1,5 +1,9 @@
 .articleList{
-    background-color: darkolivegreen;
-    margin: auto;
-    width: 360px;
+}
+
+@media only screen and (min-width: 768px) {
+    .articleList{
+        margin: auto;
+        width: 768px;
+    }
 }

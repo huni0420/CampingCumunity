@@ -19,18 +19,18 @@ export default function MyPage() {
         .then((res)=> setMyBoard(res.data))
     },[]);
 
-    
     return (
         <div className='meta-bg'>
             <div className="nav">
                 <Nav nic = { nic } />
                 <NavConnectionConfirm nic= { nic } />
             </div>
-            <div className="main">
+            <div className="my-board">
                 <section className="articleList">
-                    {myBoardApi ? myBoardApi.map(board =>(
+                    {myBoardApi.length === 0 ? "작성한 글이 없습니다."
+                    :(myBoardApi ? myBoardApi.map(board =>(
                         <BoardList key={board.boardnum} data={board}/>
-                    )):"아직안됨"}
+                    )):"아직안됨")}
                 </section>
             </div>
         </div>

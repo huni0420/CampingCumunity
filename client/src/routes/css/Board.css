@@ -7,7 +7,6 @@
 
 .board__content {
     background-color: white;
-    /*margin: auto;*/
     align-items: center;
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -16,8 +15,7 @@
 
 .board__write {
     display: grid;
-    grid-template-columns: 50px 1fr 30px;
-    /*gap: 14px;*/
+    grid-template-columns: 50px 1fr 45px;
 }
 .board__write button {
     background-image: url(../../../public/icon-write.png);
@@ -33,7 +31,7 @@
     gap: 5px;
     justify-content: end;
     justify-items: center;
-    grid-template-columns: 80px 180px 30px;
+    grid-template-columns: 80px 180px 45px;
 }
 
 .board__search-content select {
@@ -59,6 +57,7 @@
 }
 
 .board__list {
+    overflow: hidden;
     border-top: 1px solid rgb(180, 147, 147, 0.1);
 }
 
@@ -68,10 +67,13 @@
         margin-right: auto;
         width: 768px;
     }
-
+    .board__write {
+        width: 768px;
+    }
     .board__list {
-        margin-left: auto;
-        margin-right: auto;
+        /*margin-left: auto;
+        margin-right: auto;*/
+        margin: auto;
         width: 768px;
     }
 }

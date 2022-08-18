@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import LeftNav from "./LeftNav"
+import MyPageLeftNav from "./MyPageLeftNav"
 
 const StyledBurger = styled.div`
     width: 2rem;
@@ -12,7 +12,6 @@ const StyledBurger = styled.div`
     display: none;
     
     @media (max-width: 768px) {
-        position: ${({open}) => open ? `fixed` : 'relative'};
         display: flex;
         justify-content: space-around;
         flex-flow: column nowrap;
@@ -39,7 +38,7 @@ const StyledBurger = styled.div`
 `;
 
 
-export default function Burger( props ) {
+export default function MyPageBurger( props ) {
     const [open, setOpen] = useState(false)
 
     return(
@@ -49,12 +48,12 @@ export default function Burger( props ) {
             <div />
             <div />
         </StyledBurger>
-        <LeftNav nic = { props.nic } 
-                open = { open }
-                moveMain = { props.moveMain }
-                moveBoard = { props.moveBoard }
-                moveYoutube ={ props.moveYoutube }
-                moveContent = { props.moveContent } />
+        <MyPageLeftNav nic = { props.nic } 
+                    open = { open }
+                    moveMain = { props.moveMain }
+                    moveMyPage = { props.moveMyPage }
+                    moveMyInfo ={ props.moveMyInfo }
+                    withdrawal = { props.withdrawal } />
         </>
     )
 }

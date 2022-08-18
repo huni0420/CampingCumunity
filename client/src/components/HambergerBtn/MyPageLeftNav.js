@@ -37,11 +37,10 @@ export default function LeftNav ( props ){
 
     return(
         <Ul open = {props.open} >
-            <li onClick={ () => {props.moveMain()} }>메인</li>
-            <li onClick={ ()=>{props.moveBoard()} }>유저게시판</li>
-            <li onClick={ ()=>{props.moveContent()} }>캠핑컨텐츠</li>
-            <li onClick={ ()=>{props.moveYoutube()} }>캥핑유튜브</li>
-            {props.nic ? <li onClick={logout}>로그아웃</li> : ""}
+            <li onClick={ () => {props.moveMain()} }>Main</li>
+            <li onClick={ ()=>{props.moveMyPage()} }>MyContent</li>
+            <li onClick={ ()=>{props.moveMyInfo()} }>MyInfo</li>
+            <li onClick={ ()=>{props.withdrawal()} }>회원탈퇴</li>
         </Ul>
     );
 }

@@ -3,9 +3,12 @@
     background-color: white;
 }
 
-.WriteBg input, textarea:focus {outline: 2px solid rgba(128, 128, 128, .1);}
-form{
-    padding-top: 30px;
+.WriteBg input, textarea:focus {
+    outline: 2px solid rgba(128, 128, 128, .1);
+}
+
+.write-Form{
+    padding-top: 100px;
     text-align: left;
     margin: auto;
     display: grid;

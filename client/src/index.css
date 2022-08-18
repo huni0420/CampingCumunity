@@ -11,21 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }*/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 html ,body{
   margin: 0;
   text-align: center;
 }
 
-* {
-  margin: 0;
-	padding: 0;
-	border: 0;
-}
 a{
   text-decoration: none;
 }
 ol, ul, li {
+  outline: none;
 	list-style: none;
+}
+li:active{
+  /* 모바일에서 버튼 클릭시 파란배경 사라기게만듦 */
+  -webkit-tap-highlight-color : transparent !important;
 }
 .meta-bg {
   height: 100vh;

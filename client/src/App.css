@@ -1,19 +1,11 @@
-/*.App {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}*/
-
 .meta-bg {
   height: 100vh;
-  background-color: aliceblue;
   display: grid;
   grid-template-rows: 60px 1fr;
   gap: 10px;
 }
 
 .nav {
-  background-color: aquamarine;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
