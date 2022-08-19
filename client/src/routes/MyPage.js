@@ -5,25 +5,23 @@ import NavConnectionConfirm from '../components/Nav/NavConnectionConfirm'
 import BoardList from '../components/BoardList/BoardList'
 
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useSelector } from "react-redux";
 import axios from 'axios'
 
 export default function MyPage() {
-    const location = useLocation();
-    const nic = location.state.nic;
-    //console.log(nic);
+    const reduxState = useSelector((state) => state);
+    const [ myBoardApi, setMyBoard ] = useState([]);
 
-    const [ myBoardApi, setMyBoard ] = useState([])
     useEffect(() => {
-        axios.get(`/api/board?nicname=${nic}`)
+        axios.get(`/api/board?nicname=${reduxState.nicname}`)
         .then((res)=> setMyBoard(res.data))
     },[]);
 
     return (
         <div className='meta-bg'>
             <div className="nav">
-                <Nav nic = { nic } />
-                <NavConnectionConfirm nic= { nic } />
+                <Nav />
+                <NavConnectionConfirm />
             </div>
             <div className="my-board">
                 <section className="articleList">

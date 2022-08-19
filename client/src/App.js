@@ -9,6 +9,7 @@ import MyInfo from './routes/MyInfo'
 import Write from "./routes/Write";
 import Post from "./routes/Post";
 
+import CreateNic from './components/Join/CreateNic';
 import LoginMain from './components/Login/LoginMain';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Login />}/>
           <Route path="LoginMain/*" element={<LoginMain />} />
           <Route path="Join/*" element={<Join />}/>
+          <Route path='CreateNic' element={<CreateNic />} />
           <Route path="Main/*" element={<Main />} />
           <Route path="Youtube/*" element={<Youtube />} />
           <Route path="Board/*" element={<Board />} />

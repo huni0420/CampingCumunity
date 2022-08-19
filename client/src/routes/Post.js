@@ -9,6 +9,7 @@ export default function Post() {
     //console.log(no);  // { no : '1'}
     //console.log(no.no); // 1
 
+
     const [ post, setPost ] = useState([]);
     useEffect(() => {
         fetch(`/api/post?boardnum=${no.no}`)

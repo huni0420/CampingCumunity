@@ -4,13 +4,9 @@ import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
 
 import { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export default function MainUtube() {
-
-    const location = useLocation();
-    const nic = location.state.nic;
 
     const [ youtubeApi, setYoutube ] = useState([])
 
@@ -20,11 +16,12 @@ export default function MainUtube() {
         .then((res) => setYoutube(res.data))
       },[])
     //console.log(youtubeApi)
+    
     return (
         <div className="meta-bg">
             <div className="nav">
-                    <Nav nic={nic}/>
-                    <ToMyPage nic= { nic } />
+                    <Nav />
+                    <ToMyPage />
             </div>
             <div className="mainUtube">
             {youtubeApi ? youtubeApi.map((youtube) => {  

@@ -39,7 +39,7 @@ const StyledBurger = styled.div`
 `;
 
 
-export default function Burger( props ) {
+export default function Burger() {
     const [open, setOpen] = useState(false)
 
     return(
@@ -49,12 +49,7 @@ export default function Burger( props ) {
             <div />
             <div />
         </StyledBurger>
-        <LeftNav nic = { props.nic } 
-                open = { open }
-                moveMain = { props.moveMain }
-                moveBoard = { props.moveBoard }
-                moveYoutube ={ props.moveYoutube }
-                moveContent = { props.moveContent } />
+        <LeftNav open = { open }/>
         </>
     )
 }

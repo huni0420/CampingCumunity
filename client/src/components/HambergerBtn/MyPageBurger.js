@@ -38,7 +38,7 @@ const StyledBurger = styled.div`
 `;
 
 
-export default function MyPageBurger( props ) {
+export default function MyPageBurger() {
     const [open, setOpen] = useState(false)
 
     return(
@@ -48,12 +48,7 @@ export default function MyPageBurger( props ) {
             <div />
             <div />
         </StyledBurger>
-        <MyPageLeftNav nic = { props.nic } 
-                    open = { open }
-                    moveMain = { props.moveMain }
-                    moveMyPage = { props.moveMyPage }
-                    moveMyInfo ={ props.moveMyInfo }
-                    withdrawal = { props.withdrawal } />
+        <MyPageLeftNav open={open} />
         </>
     )
 }

@@ -80,29 +80,41 @@ app.post('/api/createnicname', (req, res) => {
 })
 
 //존재하는 회원인지 확인
-app.post('/api/check_id', (req, res) => {
-  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
-  let email = req.body.email;
-  console.log(email)
-  connection.query(sql,[ email ],(err, rows, field)=>{
-    console.log(rows[0]);  
-    if(rows[0] !== undefined){
-      res.send([rows[0].nicname, true]);
-    }
-    else 
-      res.send(false);
-  })
-})
+//app.post('/api/check_id', (req, res) => {
+//  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
+//  let email = req.body.email;
+//  console.log(email)
+//  connection.query(sql,[ email ],(err, rows, field)=>{
+//    console.log(rows[0]);  
+//    if(rows[0] !== undefined){
+//      //res.send([rows[0].nicname]);
+//      res.send(rows);
+//    }
+//    else
+//      res.send(rows);
+//  })
+//})
 
 // accessToken을 가지고 구글에 사용자 정보 요청
 app.post('/api/oauth/google', async (req, res) => {
+  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
   const {accessToken} = req.body;
-  //console.log(accessToken);
   const { data } = await axios.get(
     `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
   )
-  //console.log(data)// return 구글 가입정보 
-  res.send(data);
+  //console.log(data)// return 구글 가입정보
+  connection.query(sql,[ data.email ],(err, rows, field)=>{
+    console.log(rows[0]);
+    console.log([{email:data.email}])
+    if(rows[0] !== undefined){
+      //res.send([rows[0].nicname]);
+      res.send(rows);
+    }
+    else
+      res.send([{email: data.email}]);
+  })
+
+  //res.send(data);
 })
 
 // write에서 보내온 데이터로 DB에 저장

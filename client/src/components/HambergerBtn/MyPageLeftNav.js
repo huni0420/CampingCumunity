@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 const Ul = styled.ul`
@@ -28,19 +31,26 @@ const Ul = styled.ul`
         }
     }
 `
-export default function LeftNav ( props ){
+export default function LeftNav(props) {
+    const reduxState = useSelector((state)=>state);    
 
-    window.history.forward();
-    const logout = () => {
-        document.location.href='/LoginMain'
+    const withdrawal = () =>{
+        if(window.confirm('회원 탈퇴를 하시겠습니까?')===true){
+            const url = `/api/deleteuser?nicname=${props.nic}`
+            axios.get(url)
+            .then(axios.get(`/api/deleteboard?nicname=${props.nic}`))
+            .then(res => alert(res.alarm))
+            .then(document.location.href='/')
+        }
+        else
+            return;
     }
-
     return(
         <Ul open = {props.open} >
-            <li onClick={ () => {props.moveMain()} }>Main</li>
-            <li onClick={ ()=>{props.moveMyPage()} }>MyContent</li>
-            <li onClick={ ()=>{props.moveMyInfo()} }>MyInfo</li>
-            <li onClick={ ()=>{props.withdrawal()} }>회원탈퇴</li>
+            <li><Link to='/Main'>메인</Link></li>
+            <li><Link to='/MyPage'>MyContent</Link></li>
+            <li><Link to='/MyInfo'>MyInfo</Link></li>
+            <li onClick={ ()=>{ withdrawal() } }>회원탈퇴</li>
         </Ul>
     );
 }

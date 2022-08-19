@@ -3,25 +3,19 @@ import './css/Write.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { post } from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function Write(){
-    const location = useLocation();
-    const nic = location.state.nic;
 
-    const navigate = useNavigate()
+    const reduxState = useSelector((state)=>state);
+    const navigate = useNavigate();
+
     const move = () => {
-
-        navigate('/Board',
-        {
-            state: {
-                nic: nic
-            }
-        })
+        navigate('/Board')
     }
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    //console.log(title);
 
     const changeTitle = (e) => {
         e.preventDefault();
@@ -37,14 +31,6 @@ export default function Write(){
         .then((res) => {
             console.log(res.data)
         })
-        .then(
-            navigate('/Board',
-            {
-                state: {
-                    nic: nic
-                }
-            })   
-        )
     }
 
     const addBoard = () =>{
@@ -52,7 +38,7 @@ export default function Write(){
         const formData = {
             title: title,
             content: content,
-            nicname: nic
+            nicname: reduxState.nicname
         }
         return post(url, formData);
     }
@@ -61,7 +47,7 @@ export default function Write(){
         <>
         <div className='WriteBg'>
             <form className='write-Form' onSubmit={handleFormSubmit}>
-                <p>작성자: {nic}</p>
+                <p>작성자: {reduxState.nicname}</p>
                 <input type="text" onChange={changeTitle} name='title' placeholder="제목" className="inputSubject" />
                 <textarea rows={20} onChange={changeContent} name='content' placeholder="내용" className="inputContent" />
                 <div className='submitButton'>

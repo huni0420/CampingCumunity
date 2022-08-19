@@ -3,20 +3,23 @@ import './css/Main.css'
 import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
 
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function Main() {
-    const location = useLocation();
-    const nic = location.state.nic;
+
+    //const nicRedux = useSelector( (state) => state )
+    //console.log(nicRedux);
 
     return (
         <div className='meta-bg'>
             <div className="nav">
-                <Nav nic = { nic } />
-                <ToMyPage nic= { nic } />
+                <Nav />   
+                <ToMyPage />
             </div>
             <div className="main">
-                <h1>메인입니다 {nic}</h1>
+                <h1>메인입니다 </h1>
+                {/*<button onClick={()=>{ console.log(nicRedux.email)}}>버튼</button>*/}
             </div>
         </div>
     ) 

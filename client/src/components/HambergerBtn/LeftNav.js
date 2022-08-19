@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 
@@ -28,20 +30,25 @@ const Ul = styled.ul`
         }
     }
 `
+
 export default function LeftNav ( props ){
+
+    const reduxState = useSelector((state)=>state)
 
     window.history.forward();
     const logout = () => {
         document.location.href='/LoginMain'
     }
+    const navigate = useNavigate()
 
     return(
         <Ul open = {props.open} >
-            <li onClick={ () => {props.moveMain()} }>메인</li>
-            <li onClick={ ()=>{props.moveBoard()} }>유저게시판</li>
-            <li onClick={ ()=>{props.moveContent()} }>캠핑컨텐츠</li>
-            <li onClick={ ()=>{props.moveYoutube()} }>캥핑유튜브</li>
-            {props.nic ? <li onClick={logout}>로그아웃</li> : ""}
+            <Link to=''></Link>
+            <li><Link to='/Main'>메인</Link></li>
+            <li><Link to='/Board'>유저게시판</Link></li>
+            <li><Link to='/Content'>캠핑컨텐츠</Link></li>
+            <li><Link to='/Youtube'>캥핑유튜브</Link></li>
+            {reduxState.nicname ? <li onClick={logout}>로그아웃</li> : ""}
         </Ul>
     );
 }

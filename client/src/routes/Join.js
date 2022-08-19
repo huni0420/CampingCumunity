@@ -1,35 +1,29 @@
 import CreateNic from '../components/Join/CreateNic'
-
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function Join() {        
-    const [data, setData] = useState({})
-    const [num, setNum] =useState({})
+
+
+export default function Join() {    
+    const reduxState = useSelector( (state) => state )    
+    
+    const dispatch = useDispatch();
+    
     const navigate = useNavigate()
-
-    const move = () => {
-        navigate('/Main',
-        {
-            state: {
-                nic: num[0]
-            }
-        })    
-    }
+    const moveMain = () => { navigate('/Main') }
+    const moveCreateNic = () => { navigate('/CreateNic') }
+    
 
     // server에서 받아온 유저정보를 data에 담기
     useEffect(()=>{
         googleOauth()
-        .then(res => setData(res))
+        .then(res => res.data)
+        .then(data => dispatch({ type: 'onCheck', payload: { nicname: data[0].nicname , email: data[0].email } }))
+            //console.log(data[0].nicname)) // ex) nicname: 'afdfd'
     },[]);
-
-    useEffect(()=>{
-        checkMember()
-        .then((res) => setNum(res.data))
-    },[data])
-    
 
     // 구글로그인을 하면 access_token을 받아와서 server에 token을 전달
     // server에서 토큰으로 로그인한 정보를 받아오는 처리를 하고 {data}에 구글로그인 정보를 받음
@@ -37,22 +31,17 @@ export default function Join() {
         const parsedHash = window.location.hash.substring(1);        
         const accessToken = parsedHash.split('&')[0].split('=')[1];
 
-        // response값이 object형식으로 받아져와 data로 받으면 object그대로 받고
-        // {data}라고하면 object안의 data:{}를 가져와서 쓸수있다
-        const { data } = await axios.post('/api/oauth/google',{ accessToken });
-
-        return data
+        return await axios.post('/api/oauth/google',{ accessToken });
     }
 
-    const checkMember = async () => {
-        const checknum = await axios.post('/api/check_id', { email: data.email });
+    //const checkMember = async () => {
+    //    return await axios.post('/api/check_id', { email: googleData });
+    //}
+    
 
-        return checknum;
+    if(reduxState.nicname === undefined){
+        moveCreateNic();
+    }else{
+        moveMain();
     }
-    //console.log(num[1]);
-    return (
-        <>
-          { num[1] ? move() : <CreateNic email={data.email}/>}
-        </>
-    );
 }

@@ -1,7 +1,12 @@
 import { useState } from "react";
 import {post} from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function CreateNic( props ) {
+export default function CreateNic() {
+
+    //console.log(reduxState);//계속 찍힘 해결 해야함
+    const reduxState = useSelector((state)=>state)
     const [nicname, setNicname] = useState('');
 
     const changeNicname = (e) => {
@@ -12,33 +17,31 @@ export default function CreateNic( props ) {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         addMember()
-        .then((res) => {
-            //console.log(res.data)
-        })
-        .then(setNicname(''))
+        //.then((res) => {
+        //    //console.log(res.data)
+        //})
         .then(moveToLogin)
-    }
-    
-    const moveToLogin = () =>{
-        document.location.href = '/'
     }
 
     const addMember = () =>{
         const url = '/api/createnicname';
         const formData = {
             nicname: nicname,
-            email: props.email
+            email: reduxState.email
         }
         return post(url, formData);
     }
-    console.log(props.email)
+
+    const moveToLogin = () =>{
+        document.location.href = '/'
+    }
     return (
         <>
-        <form onSubmit={handleFormSubmit}>
-            <input type="text" onChange={changeNicname} name='nicname' placeholder="닉네임" className="inputNicname" />
-            <button type='submit'>작성완료</button>        
-        </form>
-            <h1>CreateNic {props.email}</h1>
+            <form onSubmit={handleFormSubmit}>
+                <input type="text" onChange={changeNicname} name='nicname' placeholder="닉네임" className="inputNicname" />
+                <button type='submit'>작성완료</button>        
+            </form>
+            <h1>CreateNic { reduxState.email }</h1>
         </>
     );
 }

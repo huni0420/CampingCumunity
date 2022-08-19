@@ -3,15 +3,10 @@ import "./css/Content.css"
 import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
 
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function MainContent() {
-
-    const location = useLocation();
-    const nic = location.state.nic;
-
     const [blogContent, setBlogContent] = useState([]);
 
     useEffect(()=>{
@@ -32,12 +27,12 @@ export default function MainContent() {
         });
         return items
     }
-    //console.log(blogContent);
+
     return (
         <div className="meta-bg">
             <div className="nav">
-                    <Nav nic={nic} />
-                    <ToMyPage nic= { nic } />
+                    <Nav />
+                    <ToMyPage />
             </div>
             <div className="camping-content">
                 {blogContent ? blogContent.map((content) => {
