@@ -1,6 +1,6 @@
 import './css/Write.css'
 
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { post } from 'axios';
 import { useSelector } from 'react-redux';
@@ -53,6 +53,7 @@ export default function Write(){
                 <div className='submitButton'>
                 <button type='submit'>작성완료</button>
                 <button onClick={move} type='button'>취소</button>
+                {/*<Link to="/Board">취소</Link>*/}
                 </div>
             </form>
         </div>

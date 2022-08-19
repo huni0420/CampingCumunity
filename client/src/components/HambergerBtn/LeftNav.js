@@ -33,21 +33,37 @@ const Ul = styled.ul`
 
 export default function LeftNav ( props ){
 
+    const navigate = useNavigate()
     const reduxState = useSelector((state)=>state)
 
-    window.history.forward();
+    // 얘땜에 이틀 고생함 ㅅㅂ진짜 개새끼 내가 이딴코드를 왜짯는지 화가날지경,
+    // 이거를 Nav바에 걸어버리니 그냥 싹다 막혀서 페이지 이동하고나서 뒤로가기가 안되는 지경에 이르르러서
+    // 이틀밤낮을 찾아헤매는데 왜 안되는지 안나와서 시발 내가진자 화가나려고한다, 진짜 이거 죽여버리고싶은 코드다!~!~ㅜㅏ링뉘ㅏ후ㅏㅣㄹ누힌믛ㅇㄴ
+    // 이거쓰면 페이지 이동후 뒤로가기 막힘
+    //window.history.forward();
+
     const logout = () => {
         document.location.href='/LoginMain'
     }
-    const navigate = useNavigate()
 
+    const moveMain = () => {
+        navigate('/Main')
+    }
+    const moveBoard = () => {
+        navigate('/Board')
+    }
+    const moveContent = () => {
+        navigate('/Content')
+    }
+    const moveYoutube = () => {
+        navigate('/Youtube')
+    }
     return(
         <Ul open = {props.open} >
-            <Link to=''></Link>
-            <li><Link to='/Main'>메인</Link></li>
-            <li><Link to='/Board'>유저게시판</Link></li>
-            <li><Link to='/Content'>캠핑컨텐츠</Link></li>
-            <li><Link to='/Youtube'>캥핑유튜브</Link></li>
+            <li  onClick={moveMain} >메인</li>
+            <li  onClick={moveBoard} >유저게시판</li>
+            <li  onClick={moveContent} >캠핑컨텐츠</li>
+            <li  onClick={moveYoutube} >캠핑유튜브</li>
             {reduxState.nicname ? <li onClick={logout}>로그아웃</li> : ""}
         </Ul>
     );

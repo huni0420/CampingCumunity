@@ -15,14 +15,7 @@ const googleWithLogin = () =>{
 export default function LoginMain() {
     const navigate = useNavigate()
 
-    const moveMain = () => {
-        navigate('/Main',
-        {
-            state: {
-                nic: ''
-            }
-        })
-    }
+    const moveMain = () => { navigate('/Main') }
     
     const kakaoLogin = () => {
         alert('아직 구현중에 있습니다.')

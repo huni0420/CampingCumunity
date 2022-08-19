@@ -20,6 +20,8 @@
 
 .articleList h3 {
     color: rgb(102, 96, 96);
+    margin: auto;
+    width: 450px;
 }
 
 
@@ -31,7 +33,7 @@
         width: 768px;
     }
 
-    .board__list {
+    .articleList {
         margin-left: auto;
         margin-right: auto;
         width: 768px;
@@ -42,6 +44,6 @@
         height: 250px;
     }
     .articleList li a h3 {
-        width: 450px;
+        width: 768px;
     }
 }

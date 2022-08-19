@@ -4,21 +4,23 @@ import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
 import BoardList from "../components/BoardList/BoardList";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';  
 import axios from 'axios';
 
 
 export default function MainBoard() {
+
     const reduxState = useSelector((state)=>state);
     const navigate = useNavigate()
+    const location = useLocation();
     
     const moveWrite = () => {
         if(reduxState.nicname === undefined )
             alert('가입후 이용해 주세요!')
         else
-            navigate('/Board/Write')    
+            navigate('/Write')    
     }
 
     //select의 선택된 옵션값의 value를 가져옴
@@ -63,6 +65,7 @@ export default function MainBoard() {
                     <div className="board__write">
                         <p>전체 글</p>
                         <span></span>
+                        {/*<Link to="/Write">글쓰기</Link>*/}
                         <button onClick={moveWrite}></button>
                     </div>
                     <div className="board__search-content">

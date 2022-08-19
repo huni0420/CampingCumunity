@@ -8,13 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Join() {    
+    const navigate = useNavigate()
+    const moveMain = () => { navigate('/Main') }
+    const moveCreateNic = () => { navigate('/CreateNic') }
     const reduxState = useSelector( (state) => state )    
     
     const dispatch = useDispatch();
     
-    const navigate = useNavigate()
-    const moveMain = () => { navigate('/Main') }
-    const moveCreateNic = () => { navigate('/CreateNic') }
     
 
     // server에서 받아온 유저정보를 data에 담기
@@ -40,8 +40,10 @@ export default function Join() {
     
 
     if(reduxState.nicname === undefined){
+        //<button onClick={()=>{moveCreateNic()}}></button>
         moveCreateNic();
     }else{
+        //<button onClick={()=>{moveMain()}}></button>
         moveMain();
     }
 }

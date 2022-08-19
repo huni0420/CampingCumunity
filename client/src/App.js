@@ -22,12 +22,12 @@ function App() {
           <Route path="/" element={<Login />}/>
           <Route path="LoginMain/*" element={<LoginMain />} />
           <Route path="Join/*" element={<Join />}/>
-          <Route path='CreateNic' element={<CreateNic />} />
+          <Route path='CreateNic/*' element={<CreateNic />} />
           <Route path="Main/*" element={<Main />} />
           <Route path="Youtube/*" element={<Youtube />} />
           <Route path="Board/*" element={<Board />} />
           <Route path='Post/:no' element={<Post />} />
-          <Route path="Board/Write" element={<Write />}/>
+          <Route path="Write/*" element={<Write />}/>
           <Route path="Content/*" element={<Content />} />
           <Route path="MyPage/*" element={<MyPage />}/>
           <Route path="MyInfo/*" element={<MyInfo />}/>
