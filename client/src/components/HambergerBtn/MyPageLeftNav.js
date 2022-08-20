@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -33,7 +33,7 @@ const Ul = styled.ul`
 `
 export default function LeftNav(props) {
     const reduxState = useSelector((state)=>state);    
-
+    const navigate = useNavigate();
     const withdrawal = () =>{
         if(window.confirm('회원 탈퇴를 하시겠습니까?')===true){
             const url = `/api/deleteuser?nicname=${props.nic}`
@@ -45,11 +45,16 @@ export default function LeftNav(props) {
         else
             return;
     }
+    const moveMain = () =>{ navigate('/Main') }
+    const moveMyPage = () =>{ navigate('/MyPage') }
+    const moveMyInfo = () =>{ navigate('/MyInfo') }
+    
+
     return(
         <Ul open = {props.open} >
-            <li><Link to='/Main'>메인</Link></li>
-            <li><Link to='/MyPage'>MyContent</Link></li>
-            <li><Link to='/MyInfo'>MyInfo</Link></li>
+            <li onClick={moveMain}>메인</li>
+            <li onClick={moveMyPage}>나의 글</li>
+            <li onClick={moveMyInfo}>내정보</li>
             <li onClick={ ()=>{ withdrawal() } }>회원탈퇴</li>
         </Ul>
     );

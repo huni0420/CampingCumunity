@@ -21,6 +21,7 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+//회원탈퇴할때 유저가쓴 게시물 삭제
 app.get('/api/deleteboard', (req, res) => {
   const nic = req.query.nicname;
 
@@ -32,6 +33,7 @@ app.get('/api/deleteboard', (req, res) => {
   )
 })
 
+//회원탈퇴
 app.get('/api/deleteuser', (req, res) => {
   const nic = req.query.nicname;
 
@@ -79,22 +81,6 @@ app.post('/api/createnicname', (req, res) => {
     })
 })
 
-//존재하는 회원인지 확인
-//app.post('/api/check_id', (req, res) => {
-//  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
-//  let email = req.body.email;
-//  console.log(email)
-//  connection.query(sql,[ email ],(err, rows, field)=>{
-//    console.log(rows[0]);  
-//    if(rows[0] !== undefined){
-//      //res.send([rows[0].nicname]);
-//      res.send(rows);
-//    }
-//    else
-//      res.send(rows);
-//  })
-//})
-
 // accessToken을 가지고 구글에 사용자 정보 요청
 app.post('/api/oauth/google', async (req, res) => {
   let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
@@ -141,8 +127,8 @@ app.get('/api/post',(req, res) => {
     ,(err, rows, field)=>{
       res.send(rows);
     }
-  )
-})
+    )
+  })
 
 // 게시판목록을 불러옴
 app.get('/api/board', (req, res) => {

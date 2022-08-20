@@ -23,13 +23,14 @@ const Ul = styled.ul`
         width: 300px;
         padding-top: 3.5rem;
         //transition: transform 0.3s ease-in-out;
-
+        
         li {
             color: #fff;
             padding-top: 60px;
         }
     }
 `
+
 
 export default function LeftNav ( props ){
 
@@ -42,28 +43,18 @@ export default function LeftNav ( props ){
     // 이거쓰면 페이지 이동후 뒤로가기 막힘
     //window.history.forward();
 
-    const logout = () => {
-        document.location.href='/LoginMain'
-    }
+    const logout = () => {document.location.href='/LoginMain'}
 
-    const moveMain = () => {
-        navigate('/Main')
-    }
-    const moveBoard = () => {
-        navigate('/Board')
-    }
-    const moveContent = () => {
-        navigate('/Content')
-    }
-    const moveYoutube = () => {
-        navigate('/Youtube')
-    }
+    const moveMain = () => { navigate('/Main') }
+    const moveBoard = () => { navigate('/Board') }
+    const moveContent = () => { navigate('/Content') }
+    const moveYoutube = () => { navigate('/Youtube') }
     return(
         <Ul open = {props.open} >
-            <li  onClick={moveMain} >메인</li>
-            <li  onClick={moveBoard} >유저게시판</li>
-            <li  onClick={moveContent} >캠핑컨텐츠</li>
-            <li  onClick={moveYoutube} >캠핑유튜브</li>
+            <li onClick={moveMain} >메인</li>
+            <li onClick={moveBoard} >유저게시판</li>
+            <li onClick={moveContent} >캠핑컨텐츠</li>
+            <li onClick={moveYoutube} >캠핑유튜브</li>
             {reduxState.nicname ? <li onClick={logout}>로그아웃</li> : ""}
         </Ul>
     );
