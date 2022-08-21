@@ -30,6 +30,7 @@ app.post('/api/viewcount', (req, res) => {
     (err, rows, fields) => 
     {res.send(rows)});
 })
+
 //회원탈퇴할때 유저가쓴 게시물 삭제
 app.get('/api/deleteboard', (req, res) => {
   const nic = req.query.nicname;
@@ -123,6 +124,16 @@ app.post('/api/boardpost', (req, res) => {
     (err, rows, fields) => {
       res.send(rows);
     })
+})
+
+// 게시판 번호를 이용, Reply데이터를 받아옴.
+app.get('/api/boardreply', (req, res) => {
+  const boardnum = req.query.boardnum;
+  const url = 'SELECT * FROM cc_camp.BoardReply WHERE boardnum = ?';
+
+  connection.query( url, [ boardnum ], ( err, rows, field ) => {
+    res.send(rows);
+  });
 })
 
 // 게시판 번호를 이용해서 DB에서 맞는 게시판번호의 데이터를 client에 전달

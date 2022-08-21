@@ -12,6 +12,7 @@ export default function BoardList( props ){
             <div className="articleListItemMeta board__list-meta">
                 <div className="articleListItemMetaUser board__list-user"><span>{props.data.nicname}</span></div>
                 <div className="articleListItemMetaTime board__list-time"><span>8시간전</span></div>
+                <span>조회수: {props.data.boardview}</span>
             </div>
         </div>
     );

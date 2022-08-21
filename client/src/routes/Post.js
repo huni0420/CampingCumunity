@@ -12,7 +12,8 @@ export default function Post() {
 
 
     const [ post, setPost ] = useState([]);
-    const [ repply, setRepply ] = useState([]);
+    const [ postView, setPostView] = useState(post.boardview);
+    const [ reply, setReply ] = useState([]);
     useEffect(() => {
         fetch(`/api/post?boardnum=${no.no}`)
         .then((res)=> res.json())
@@ -20,16 +21,26 @@ export default function Post() {
             setPost(data)
         });
     },[])
-    useEffect( async () => {
-        boardnum = no.no
-        await axios.post(`api/viewcount`)
-    })
-    console.log(post);
-    
+
+    useEffect(() => {
+        axios.get(`/api/boardreply?boardnum=${no.no}`)
+        .then((res) => res)
+        .then((data) => { setReply(data) });
+    },[])
+
+    useEffect(() => {
+        const boardnum = no.no
+        axios.post(`/api/viewcount`,{ boardnum })
+    },[postView])
+
+    console.log("post",post);
+    console.log("reply",reply)
     return(
         <div className="meta-bg">
             <div></div>
-            <div className="post">
+            {post.map(post => {
+                return(
+            <div key={post.title} className="post">
                 <div className="post-header">
                     <h2>{post.title}</h2>
                     <div className="post-header--meta-list">
@@ -38,42 +49,59 @@ export default function Post() {
                             <p>{post.nicname} |</p>
                         </div>
                         <div className="post-header--meta-list__right">
-                            <p>조회 252 |</p>
+                            <p>조회수 {post.boardview +1} |</p>
                             <p>댓글 385 |</p>
                         </div>
                     </div>
                 </div>
-                {post.map(post => {
-                    return(
-                    <div className="post-content">
-                        <h3>{post.content}bnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
-                        vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
-                        bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
-                        bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfml</h3>
-                        {}
-                        <Link to='/'>가자</Link>
+                
+                <div className="post-content">
+                    <h3>{post.content}bnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfmlbnlbnldnlbdnlbncvlbmlfdadglradlkcv ldkddfgflkbmfdbld bl flb ldfklvmcklbmflkb kdl blk dflb l bkl bkldfklbkzlcmvklcvmklmvlz
+                    vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
+                    bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
+                    bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfml</h3>
+                    {}
+                    <Link to='/'>가자</Link>
+                    <div>
+                        <form>
+                            <textarea />
+                        </form>
+                        <div>
+                            <button>답글달기</button>
+                        </div>
                     </div>
-                    )
-                })}
+                    <div>
+                        {reply.data.map(reply => {
+                            return (
+                                <>
+                                    <h3>{ reply.content }</h3>
+                                    <p>{ reply.nicname }</p>
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
+            )
+            })}
         </div>
     );
 }

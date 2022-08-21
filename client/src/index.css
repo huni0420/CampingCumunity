@@ -32,6 +32,10 @@ li:active{
   /* 모바일에서 버튼 클릭시 파란배경 사라기게만듦 */
   -webkit-tap-highlight-color : transparent !important;
 }
+
+textarea {
+  resize: none;
+}
 .meta-bg {
   height: 100vh;
   display: grid;

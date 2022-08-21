@@ -21,7 +21,7 @@
 }
 .board__list-meta{
     display: grid;
-    grid-template-columns: 80px 100px;
+    grid-template-columns: 80px 100px 100px;
 }
 
 .board__list-user, .board__list-time{
