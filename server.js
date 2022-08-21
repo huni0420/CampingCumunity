@@ -21,6 +21,15 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+
+//post 조회시 조회수 +1해줌
+app.post('/api/viewcount', (req, res) => {
+  let sql = 'UPDATE cc_camp.Board SET boardview = boardview + 1 where boardnum = ?';
+  let boardnum = req.body.boardnum;
+  connection.query(sql, [boardnum], 
+    (err, rows, fields) => 
+    {res.send(rows)});
+})
 //회원탈퇴할때 유저가쓴 게시물 삭제
 app.get('/api/deleteboard', (req, res) => {
   const nic = req.query.nicname;

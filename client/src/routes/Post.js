@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import './css/Post.css'
@@ -19,7 +20,10 @@ export default function Post() {
             setPost(data)
         });
     },[])
-
+    useEffect( async () => {
+        boardnum = no.no
+        await axios.post(`api/viewcount`)
+    })
     console.log(post);
     
     return(
