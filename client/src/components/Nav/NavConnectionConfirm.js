@@ -4,7 +4,7 @@ import './css/NavConnectionConfirm.css'
 export default function ToMyPage() {
 
     const navigate = useNavigate()
-    const reduxState = useSelector((state) => state);
+    const reduxState = useSelector((state) => state.user);
 
     const moveMyPage = () => { navigate('/MyPage') }
 

@@ -32,7 +32,7 @@ const Ul = styled.ul`
     }
 `
 export default function LeftNav(props) {
-    const reduxState = useSelector((state)=>state);    
+    const reduxState = useSelector((state)=>state.user);    
     const navigate = useNavigate();
     const withdrawal = () =>{
         if(window.confirm('회원 탈퇴를 하시겠습니까?')===true){

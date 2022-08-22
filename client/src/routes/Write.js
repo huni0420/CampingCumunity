@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 export default function Write(){
 
-    const reduxState = useSelector((state)=>state);
+    const reduxState = useSelector((state)=>state.user);
     const navigate = useNavigate();
 
     const move = () => {

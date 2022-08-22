@@ -3,33 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-//import reducers from './reducers';
-
-import {createStore} from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 
+import rootReducerWithPersit from './reducers';
+import { PersistGate } from "redux-persist/integration/react";
 
 
-const initState = {
-  email: undefined,
-  nicname: ''
-}
-function reducers( state = initState, action){
-  switch(action.type){
-    case "onCheck" :
-      let onCheckState = state;
-      return onCheckState = action.payload
-  }
-  return state
-}
-
-const store = createStore(reducers);
+const { store, persistor } = rootReducerWithPersit();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
   <Provider store={store} > 
-    <App />
+    <PersistGate loading = { null } persistor={ persistor } >
+      <App />
+    </PersistGate>
   </Provider>
   </>
 );

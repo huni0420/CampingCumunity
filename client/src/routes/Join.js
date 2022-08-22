@@ -11,7 +11,8 @@ export default function Join() {
     const navigate = useNavigate()
     const moveMain = () => { navigate('/Main') }
     const moveCreateNic = () => { navigate('/CreateNic') }
-    const reduxState = useSelector( (state) => state )    
+
+    const reduxState = useSelector( (state) => state.user )    
     
     const dispatch = useDispatch();
     

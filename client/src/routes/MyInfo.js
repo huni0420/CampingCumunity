@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function MyInfo() {
-    const reduxState = useSelector((state) => state);
+    const reduxState = useSelector((state) => state.user);
     const [newNicname, setNewNicname] = useState('');
 
     const changeNicname = (e) => {

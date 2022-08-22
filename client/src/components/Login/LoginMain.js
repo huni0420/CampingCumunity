@@ -1,8 +1,6 @@
 import './css/LoginMain.css';
 
-import { useNavigate, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 const googleWithLogin = () =>{
     window.location.href =`https://accounts.google.com/o/oauth2/auth?`+

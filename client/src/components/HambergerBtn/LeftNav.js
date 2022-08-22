@@ -35,7 +35,7 @@ const Ul = styled.ul`
 export default function LeftNav ( props ){
 
     const navigate = useNavigate()
-    const reduxState = useSelector((state)=>state)
+    const reduxState = useSelector((state)=> state.user)
 
     // 얘땜에 이틀 고생함 ㅅㅂ진짜 개새끼 내가 이딴코드를 왜짯는지 화가날지경,
     // 이거를 Nav바에 걸어버리니 그냥 싹다 막혀서 페이지 이동하고나서 뒤로가기가 안되는 지경에 이르르러서
@@ -43,7 +43,10 @@ export default function LeftNav ( props ){
     // 이거쓰면 페이지 이동후 뒤로가기 막힘
     //window.history.forward();
 
-    const logout = () => {document.location.href='/LoginMain'}
+    const logout = () => {
+        window.localStorage.removeItem('persist:root');
+        document.location.href='/LoginMain';
+    }
 
     const moveMain = () => { navigate('/Main') }
     const moveBoard = () => { navigate('/Board') }

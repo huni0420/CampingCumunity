@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export default function CreateNic() {
 
     //console.log(reduxState);//계속 찍힘 해결 해야함
-    const reduxState = useSelector((state)=>state)
+    const reduxState = useSelector((state)=>state.user)
     const [nicname, setNicname] = useState('');
 
     const changeNicname = (e) => {

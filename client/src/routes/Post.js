@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import './css/Post.css'
+
 export default function Post() {
+    const reduxState = useSelector((state) => state.user);
     //Link에 파라메터를 덧붙여서 전달하면
     //route에 파라메터의 키값으로 정의해서
     //넘어온 파라메터를 useParams를 사용해서 object로 받는다

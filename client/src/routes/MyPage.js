@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import axios from 'axios'
 
 export default function MyPage() {
-    const reduxState = useSelector((state) => state);
+    const reduxState = useSelector((state) => state.user);
     const [ myBoardApi, setMyBoard ] = useState([]);
 
     useEffect(() => {

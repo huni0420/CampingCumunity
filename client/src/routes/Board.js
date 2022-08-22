@@ -12,7 +12,7 @@ import axios from 'axios';
 
 export default function MainBoard() {
 
-    const reduxState = useSelector((state)=>state);
+    const reduxState = useSelector((state)=>state.user);
     const navigate = useNavigate()
     const location = useLocation();
     
