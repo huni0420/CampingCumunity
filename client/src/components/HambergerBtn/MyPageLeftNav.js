@@ -36,10 +36,11 @@ export default function LeftNav(props) {
     const navigate = useNavigate();
     const withdrawal = () =>{
         if(window.confirm('회원 탈퇴를 하시겠습니까?')===true){
-            const url = `/api/deleteuser?nicname=${props.nic}`
+            const url = `/api/deleteuser?nicname=${reduxState.nicname}`
             axios.get(url)
-            .then(axios.get(`/api/deleteboard?nicname=${props.nic}`))
+            .then(axios.get(`/api/deleteboard?nicname=${reduxState.nicname}`))
             .then(res => alert(res.alarm))
+            .then(window.localStorage.removeItem('persist:root'))
             .then(document.location.href='/')
         }
         else
@@ -55,7 +56,7 @@ export default function LeftNav(props) {
             <li onClick={moveMain}>메인</li>
             <li onClick={moveMyPage}>나의 글</li>
             <li onClick={moveMyInfo}>내정보</li>
-            <li onClick={ ()=>{ withdrawal() } }>회원탈퇴</li>
+            <li onClick={withdrawal}>회원탈퇴</li>
         </Ul>
     );
 }

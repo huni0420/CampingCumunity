@@ -61,6 +61,12 @@
     border-top: 1px solid rgb(180, 147, 147, 0.1);
 }
 
+.page-btn button {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    background-color: transparent;
+}
 @media only screen and (min-width: 768px) {
     .board__content {
         margin-left: auto;
