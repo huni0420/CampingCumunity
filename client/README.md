@@ -22,8 +22,8 @@
 ####               ● redux-persist<br/>
 ####               ● styled-component<br/>
 ####               ● React Hook<br/>
-## nodemon server.js
 
-  Runs the app
+## :nerd_face: 기획 및 설계
 
-### 아직 미완단계 입니다
+:hammer_and_wrench: [페이지 기획서](https://www.figma.com/file/vtp2oDRXIqqphTyYPiMcmG/Untitled?node-id=0%3A1)
+![스크린샷, 2022-08-24 11-23-49](https://user-images.githubusercontent.com/92001468/186304395-44e2ec22-9009-49b3-b1a9-a63550db8c95.png)
