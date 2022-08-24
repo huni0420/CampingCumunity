@@ -1,7 +1,8 @@
 # Camping Cumunity Project
 <br/>
 
-![cc_project](https://user-images.githubusercontent.com/92001468/186299471-e951024d-ff32-41db-8cf1-d67dcde04337.png)
+ <img src="https://user-images.githubusercontent.com/92001468/186299471-e951024d-ff32-41db-8cf1-d67dcde04337.png" width="300" height="500"> | ![bga](https://user-images.githubusercontent.com/92001468/186324727-a6ae0cc2-b70f-433a-9c43-8fd3c0a4ddc5.GIF) 
+
 ###### >캠핑커뮤니티 첫화면 입니다<
 ## :dart: Purpose
 ### 공부한 React와 Node.js를 이용해 캠핑관련 자료와 캠핑을 좋아하는 사람들이 모여 커뮤니티를 형성하여 이야기를 주고 받을 수 있는 사이트를 만들고 싶었습니다.

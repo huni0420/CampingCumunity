@@ -22,10 +22,13 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.post('/api/replyboard', (req, res) => {
-  let sql = 'INSERT INTO cc_camp.BoardReply VALUES (null, ?, ?, ?)';
+  let sql = 'INSERT INTO cc_camp.BoardReply VALUES (null, ?, ?, ?, CURRENT_TIMESTAMP)';
   let nicname = req.body.nicname;
   let content = req.body.content;
   let boardnum = req.body.boardnum;
+  console.log(nicname)
+  console.log(content)
+  console.log(boardnum)
   let params = [ nicname, content, boardnum ];
   connection.query(sql, params, (err, rows, field) =>{
     res.send(rows);

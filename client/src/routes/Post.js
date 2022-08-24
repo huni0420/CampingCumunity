@@ -113,7 +113,7 @@ export default function Post() {
                             return (
                                 <div key={reply.replynum}>
                                     <h3>{ reply.content }</h3>
-                                    <p>{ reply.nicname }</p>
+                                    <p>닉네임: { reply.nicname }</p>
                                 </div>
                             )
                         })}
