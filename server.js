@@ -21,6 +21,16 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+app.post('/api/replyboard', (req, res) => {
+  let sql = 'INSERT INTO cc_camp.BoardReply VALUES (null, ?, ?, ?)';
+  let nicname = req.body.nicname;
+  let content = req.body.content;
+  let boardnum = req.body.boardnum;
+  let params = [ nicname, content, boardnum ];
+  connection.query(sql, params, (err, rows, field) =>{
+    res.send(rows);
+  })
+})
 
 //post 조회시 조회수 +1해줌
 app.post('/api/viewcount', (req, res) => {

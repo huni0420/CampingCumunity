@@ -12,11 +12,10 @@ import Post from "./routes/Post";
 import CreateNic from './components/Join/CreateNic';
 import LoginMain from './components/Login/LoginMain';
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
     <div className="App">
         <Routes>
           <Route path="/" element={<Login />}/>
@@ -33,7 +32,6 @@ function App() {
           <Route path="MyInfo/*" element={<MyInfo />}/>
         </Routes>
     </div>
-    </Router>
   );
 }
       

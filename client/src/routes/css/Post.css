@@ -35,6 +35,22 @@
     word-break: break-all;
 }
 
+.reply-write {
+    width: 100%;
+}
+.reply-write form textarea {
+    width: 100%;
+    height: 140px;
+}
+.reply-content {
+    padding-top: 20px;
+}
+.reply-content h3 {
+    padding-bottom: 5px;
+}
+.reply-content p {
+    padding-bottom: 20px;
+}
 @media only screen and (min-width: 768px) {
     .post {
         width: 100%;

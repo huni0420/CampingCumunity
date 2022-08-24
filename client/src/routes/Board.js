@@ -57,7 +57,7 @@ export default function MainBoard() {
             setOnSearch(false)
         if(onSearch==false)
             setOnSearch(true)
-    }        
+    }
     
     //게시판의 내용을 server로 요청
     const [ boardApi, setBoard ] = useState([])

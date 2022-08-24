@@ -15,14 +15,19 @@ export default function Post() {
 
 
     const [ post, setPost ] = useState([]);
-    const [ postView, setPostView] = useState(post.boardview);
+    //const [ postView, setPostView] = useState(post.boardview);
     const [ reply, setReply ] = useState([]);
-    useEffect(() => {
-        fetch(`/api/post?boardnum=${no.no}`)
+    useEffect(async () => {
+        const boardnum = no.no
+        await axios.post(`/api/viewcount`,{ boardnum })
+        await fetch(`/api/post?boardnum=${no.no}`)
         .then((res)=> res.json())
         .then((data)=> {
             setPost(data)
         });
+        //await axios.get(`/api/boardreply?boardnum=${no.no}`)
+        //.then((res) => res)
+        //.then((data) => { setReply(data) });
     },[])
 
     useEffect(() => {
@@ -31,13 +36,29 @@ export default function Post() {
         .then((data) => { setReply(data) });
     },[])
 
-    useEffect(() => {
-        const boardnum = no.no
-        axios.post(`/api/viewcount`,{ boardnum })
-    },[postView])
+    //useEffect(() => {
+    //    const boardnum = no.no
+    //    axios.post(`/api/viewcount`,{ boardnum })
+    //},[postView])
+
+    const [replyText, setReplyText] = useState('');
+    const changetext = (e) => {
+        e.preventDefault();
+        setReplyText(e.target.value)
+    }
+    const handleFormSubmit = () => {
+        const url = '/api/replyboard';
+        const reply = {
+            nicname: reduxState.nicname,
+            content: replyText,
+            boardnum: no.no
+        }
+        axios.post(url, reply)
+    };
 
     console.log("post",post);
     console.log("reply",reply)
+    
     return(
         <div className="meta-bg">
             <div></div>
@@ -81,23 +102,19 @@ export default function Post() {
                     vfmdlvmdflmbfklmablf lkb lfb lkdf kb dflbdfskbdlfb dkflb lkdf lkbkblmdsflb dflkbl dfklbfdbdflkb ldfbfdklb dflb fld bldfb kdfblfnfbkdf blfd bldf lb databfdl
                     bfg blgfkbldlbldb ldgsb dgklb lgd bldg bl dgb dglb;dgbdb dklb fdl bldf bl tklgb l bkls bglb lgd bkgls lbglkd setContentbdg kbl dglbdg
                     bgdlkb dkglb lkgdmbdmblkgmdlkbmdglbkmdktlgmbltsmgdmgdfgmlfml</h3>
-                    {}
-                    <Link to='/'>가자</Link>
-                    <div>
-                        <form>
-                            <textarea />
+                    <div className="reply-write">
+                        <form onSubmit={handleFormSubmit}>
+                            <textarea rows={5} onChange={changetext} name='content' placeholder="내용"/>
+                            <button type="submit">답글달기</button>
                         </form>
-                        <div>
-                            <button>답글달기</button>
-                        </div>
                     </div>
-                    <div>
+                    <div className="reply-content">
                         {reply.data.map(reply => {
                             return (
-                                <>
+                                <div key={reply.replynum}>
                                     <h3>{ reply.content }</h3>
                                     <p>{ reply.nicname }</p>
-                                </>
+                                </div>
                             )
                         })}
                     </div>
