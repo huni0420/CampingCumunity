@@ -1,4 +1,4 @@
-# Camping Cumunity Project
+# 🏕️ Camping Cumunity Project
 <br/>
 
  <img src="https://user-images.githubusercontent.com/92001468/186299471-e951024d-ff32-41db-8cf1-d67dcde04337.png" width="300" height="500"> | ![bga](https://user-images.githubusercontent.com/92001468/186324727-a6ae0cc2-b70f-433a-9c43-8fd3c0a4ddc5.GIF) 
@@ -28,3 +28,6 @@
 
 :hammer_and_wrench: [페이지 기획서](https://www.figma.com/file/vtp2oDRXIqqphTyYPiMcmG/Untitled?node-id=0%3A1)
 ![스크린샷, 2022-08-24 11-23-49](https://user-images.githubusercontent.com/92001468/186304395-44e2ec22-9009-49b3-b1a9-a63550db8c95.png)
+
+:memo: [DB diagram](https://dbdiagram.io/d/6305a49af1a9b01b0fcf5a41)
+![스크린샷, 2022-08-24 13-09-43](https://user-images.githubusercontent.com/92001468/186327172-e9f6f2c4-de1e-400f-bb75-262e007b5129.png)
