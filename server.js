@@ -197,6 +197,8 @@ app.get('/api/board', (req, res) => {
 
 // 유튜브에서 가져온 리스트를 client에 전달
 app.get('/api/youtube', (req, res) => {
+  // 유튜브에서 하루에 데이터를 요청할 수있는 양이 정해져있어 개발단계에선
+  // 일단 응답으로 온 json데이터를 직접 적어 넣어뒀다
     res.send([
         {
             "kind": "youtube#searchListResponse",
