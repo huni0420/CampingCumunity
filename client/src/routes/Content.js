@@ -14,6 +14,9 @@ export default function MainContent() {
         .then(res => setBlogContent(res))
     })
 
+    // 캠핑에 관련된 검색결과를 네이버에서 가져옴
+    // express서버에 요청해서 처리한다음 가져올 수도 있으나 굳이 그렇게 하지 않은이유?
+    // 
     const SearchBlog = async () => {
         const {data:{items}} = await axios.get('/v1/search/blog',{
             params:{
