@@ -36,6 +36,8 @@ export default function MainBoard() {
         const last = first+10;
         setFirstPageNumber(first);
         setLastPageNumber(last);
+
+        return;
     },[pageNum])
 
     //select의 선택된 옵션값의 value를 가져옴
@@ -67,9 +69,11 @@ export default function MainBoard() {
         axios.get(url)
         .then((res)=> setBoard(res.data))
         //검색후 page를 1번으로 돌려놓음
-        .then(setPageNum(0))
-    },[onSearch])
+        .then(setPageNum(0));
 
+        return;
+    },[onSearch])
+    
     // pagenation page개수 구현
     const render = () => {
         const pageBtn = []
@@ -78,7 +82,9 @@ export default function MainBoard() {
         }
         return pageBtn;
     }
+
     const p = render();
+
     return (
         <div className="meta-bg">
             <div className="nav">
@@ -90,7 +96,6 @@ export default function MainBoard() {
                     <div className="board__write">
                         <p>전체 글</p>
                         <span></span>
-                        {/*<Link to="/Write">글쓰기</Link>*/}
                         <button onClick={moveWrite}></button>
                     </div>
                     <div className="board__search-content">

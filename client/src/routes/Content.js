@@ -12,6 +12,8 @@ export default function MainContent() {
     useEffect(()=>{
         SearchBlog()
         .then(res => setBlogContent(res))
+
+        return;
     })
 
     // 캠핑에 관련된 검색결과를 네이버에서 가져옴
@@ -21,7 +23,7 @@ export default function MainContent() {
         const {data:{items}} = await axios.get('/v1/search/blog',{
             params:{
               query: '캠핑',
-              display: 10
+              display: 30
             },
             headers: {
               'X-Naver-Client-Id': process.env.REACT_APP_NAVER_ID_KEY,

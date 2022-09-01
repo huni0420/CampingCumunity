@@ -22,8 +22,9 @@ export default function Join() {
     useEffect(()=>{
         googleOauth()
         .then(res => res.data)
-        .then(data => dispatch({ type: 'onCheck', payload: { nicname: data[0].nicname , email: data[0].email } }))
+        .then(data => dispatch({ type: 'onCheck', payload: { nicname: data[0].nicname , email: data[0].email } }));
             //console.log(data[0].nicname)) // ex) nicname: 'afdfd'
+        return;
     },[]);
 
     // 구글로그인을 하면 access_token을 받아와서 server에 token을 전달

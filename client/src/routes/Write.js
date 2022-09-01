@@ -1,6 +1,6 @@
 import './css/Write.css'
 
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { post } from 'axios';
 import { useSelector } from 'react-redux';
@@ -31,6 +31,7 @@ export default function Write(){
         .then((res) => {
             console.log(res.data)
         })
+        .then(move)
     }
 
     const addBoard = () =>{
@@ -51,8 +52,8 @@ export default function Write(){
                 <input type="text" onChange={changeTitle} name='title' placeholder="제목" className="inputSubject" />
                 <textarea rows={20} onChange={changeContent} name='content' placeholder="내용" className="inputContent" />
                 <div className='submitButton'>
-                <button type='submit'>작성완료</button>
-                <button onClick={move} type='button'>취소</button>
+                    <button type='submit'>작성완료</button>
+                    <button onClick={move} type='button'>취소</button>
                 {/*<Link to="/Board">취소</Link>*/}
                 </div>
             </form>

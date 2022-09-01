@@ -8,15 +8,19 @@ import axios from 'axios';
 
 export default function MainUtube() {
 
-    const [ youtubeApi, setYoutube ] = useState([])
+    const [ youtubeApi, setYoutube ] = useState(false)
 
     useEffect(() => {
-        const url = '/api/youtube';
-        axios(url)
-        .then((res) => setYoutube(res.data))
+        setDataYoutube();
       },[])
-    //console.log(youtubeApi)
+
+    const setDataYoutube = async () => {
+        const url = '/api/youtube';
+        const data = await axios(url)
+        setYoutube( data.data.items );
+    }
     
+    //console.log("api",youtubeApi)
     return (
         <div className="meta-bg">
             <div className="nav">
@@ -24,27 +28,49 @@ export default function MainUtube() {
                     <ToMyPage />
             </div>
             <div className="mainUtube">
-            {youtubeApi ? youtubeApi.map((youtube) => {  
+            {/*console.log("b",youtube[0])*/}
+            {Array.isArray(youtubeApi) ? youtubeApi.map((youtube) => { 
+                const { id, snippet = {}} = youtube;
+                const { title, thumbnails ={} } = snippet;
+                const { medium,high = {} } = thumbnails;
                 return(
-                    youtube.items.map((item)=>{
-                    const { id, snippet = {}} = item;
-                    const { title, thumbnails ={} } = snippet;
-                    const { medium,high = {} } = thumbnails;
-                    return(
-                        <section key={title} className="articleList">
-                            <li>
-                                <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
-                                    <p>
-                                        <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
-                                    </p>
-                                    <h3>{title}</h3>
-                                </a>
-                            </li>
-                        </section>
-                    );
-                }));
-            }):"아직안됨"}
+                    <section key={title} className="articleList">
+                        <li>
+                            <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
+                                <p>
+                                    <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
+                                </p>
+                                <h3>{title}</h3>
+                            </a>
+                        </li>
+                    </section>
+                );
+            }):"요청중..."}
             </div>
         </div>
     );
 }
+
+//{Array.isArray(youtubeApi) ? youtubeApi.map((youtube) => { 
+//    console.log("b",youtube[0])
+//    return(
+//        youtube.items.map((item) => {
+//        const { id, snippet = {}} = item;
+//        const { title, thumbnails ={} } = snippet;
+//        const { medium,high = {} } = thumbnails;
+//        console.log(id, snippet)
+//        console.log(title)
+//        return(
+//            <section key={title} className="articleList">
+//                <li>
+//                    <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
+//                        <p>
+//                            <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
+//                        </p>
+//                        <h3>{title}</h3>
+//                    </a>
+//                </li>
+//            </section>
+//        );
+//    }));
+//}): []}

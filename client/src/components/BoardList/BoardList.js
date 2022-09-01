@@ -6,7 +6,7 @@ export default function BoardList( props ){
         <div className="board__list-item">
             <div className="board__list-title"> 
                 <Link to={`/Post/${props.data.boardnum}`}>
-                    <span>{props.data.title}dasgadgdsgsdgdsgsdgadsgdsgsd</span>
+                    <span>{props.data.title}</span>
                 </Link>
             </div>
             <div className="articleListItemMeta board__list-meta">
