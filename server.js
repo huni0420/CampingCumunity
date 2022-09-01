@@ -117,7 +117,7 @@ app.post('/api/oauth/google', async (req, res) => {
   const { data } = await axios.get(
     `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
   )
-  console.log("받아온데이터567",data)// return 구글 가입정보
+  //console.log("받아온데이터567",data)// return 구글 가입정보
   connection.query(sql,[ data.email ],(err, rows, field)=>{
     //console.log("받아온 데이터123",rows[0]);
     //console.log("받아온 데이터",[{email:data.email}])
