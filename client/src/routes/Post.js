@@ -14,9 +14,9 @@ export default function Post() {
     //console.log(no.no); // 1
 
 
-    const [ post, setPost ] = useState([]);
+    const [ post, setPost ] = useState(false);
     //const [ postView, setPostView] = useState(post.boardview);
-    const [ reply, setReply ] = useState([]);
+    const [ reply, setReply ] = useState(false);
     useEffect( () => {
         const boardnum = no.no
         axios.post(`/api/viewcount`,{ boardnum })
@@ -40,11 +40,6 @@ export default function Post() {
         return;
     },[]);
 
-    //useEffect(() => {
-    //    const boardnum = no.no
-    //    axios.post(`/api/viewcount`,{ boardnum })
-    //},[postView])
-
     const [replyText, setReplyText] = useState('');
 
     const changetext = (e) => {
@@ -65,7 +60,7 @@ export default function Post() {
     return(
         <div className="meta-bg">
             <div></div>
-            {post.map(post => {
+            {Array.isArray(post) ? post.map(post => {
                 return(
             <div key={post.title} className="post">
                 <div className="post-header">
@@ -91,19 +86,19 @@ export default function Post() {
                         </form>
                     </div>
                     <div className="reply-content">
-                        {reply.data.map(reply => {
+                        {Array.isArray(reply)? reply.data.map(reply => {
                             return (
                                 <div key={reply.replynum}>
                                     <h3>{ reply.content }</h3>
                                     <p>닉네임: { reply.nicname }</p>
                                 </div>
                             )
-                        })}
+                        }): ""}
                     </div>
                 </div>
             </div>
             )
-            })}
+            }): "요청중"}
         </div>
     );
 }

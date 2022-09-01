@@ -37,6 +37,7 @@
 
 .reply-write {
     width: 100%;
+    margin-top: 190px;
 }
 .reply-write form textarea {
     width: 100%;

@@ -28,7 +28,6 @@ export default function MainUtube() {
                     <ToMyPage />
             </div>
             <div className="mainUtube">
-            {/*console.log("b",youtube[0])*/}
             {Array.isArray(youtubeApi) ? youtubeApi.map((youtube) => { 
                 const { id, snippet = {}} = youtube;
                 const { title, thumbnails ={} } = snippet;
@@ -50,27 +49,3 @@ export default function MainUtube() {
         </div>
     );
 }
-
-//{Array.isArray(youtubeApi) ? youtubeApi.map((youtube) => { 
-//    console.log("b",youtube[0])
-//    return(
-//        youtube.items.map((item) => {
-//        const { id, snippet = {}} = item;
-//        const { title, thumbnails ={} } = snippet;
-//        const { medium,high = {} } = thumbnails;
-//        console.log(id, snippet)
-//        console.log(title)
-//        return(
-//            <section key={title} className="articleList">
-//                <li>
-//                    <a href={`https://www.youtube.com/watch?v=${id.videoId}`}>
-//                        <p>
-//                            <img width={medium.width} height={medium.height} src={medium.url} alt=""/>
-//                        </p>
-//                        <h3>{title}</h3>
-//                    </a>
-//                </li>
-//            </section>
-//        );
-//    }));
-//}): []}

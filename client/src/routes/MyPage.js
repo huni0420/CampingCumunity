@@ -10,7 +10,7 @@ import axios from 'axios'
 
 export default function MyPage() {
     const reduxState = useSelector((state) => state.user);
-    const [ myBoardApi, setMyBoard ] = useState([]);
+    const [ myBoardApi, setMyBoard ] = useState(false);
 
     useEffect(() => {
         axios.get(`/api/board?nicname=${reduxState.nicname}`)
@@ -26,7 +26,7 @@ export default function MyPage() {
             <div className="my-board">
                 <section className="articleList">
                     {myBoardApi.length === 0 ? "작성한 글이 없습니다."
-                    :(myBoardApi ? myBoardApi.map(board =>(
+                    : (Array.isArray(myBoardApi) ? myBoardApi.map(board =>(
                         <BoardList key={board.boardnum} data={board}/>
                     )):"아직안됨")}
                 </section>

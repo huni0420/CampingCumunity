@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function MainContent() {
-    const [blogContent, setBlogContent] = useState([]);
+    const [blogContent, setBlogContent] = useState(false);
 
     useEffect(()=>{
         SearchBlog()
         .then(res => setBlogContent(res))
 
         return;
-    })
+    }, [])
 
     // 캠핑에 관련된 검색결과를 네이버에서 가져옴
     // express서버에 요청해서 처리한다음 가져올 수도 있으나 굳이 그렇게 하지 않은이유?
@@ -33,6 +33,7 @@ export default function MainContent() {
         return items
     }
 
+
     return (
         <div className="meta-bg">
             <div className="nav">
@@ -40,7 +41,7 @@ export default function MainContent() {
                     <ToMyPage />
             </div>
             <div className="camping-content">
-                {blogContent ? blogContent.map((content) => {
+                {Array.isArray(blogContent)? blogContent.map((content) => {
                     // SUMMARY:
                     // 네이버에서 검색API로 가져온 data중 title에는 검색query로 검색되는 부분에 <b></b>가 붙어서 온다
                     // <b></b>를 지우기 위해 replace와 정규식을 사용해서 이 부분을 삭제하는 과정이 필요하다

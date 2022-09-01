@@ -62,7 +62,7 @@ export default function MainBoard() {
     }
     
     //게시판의 내용을 server로 요청
-    const [ boardApi, setBoard ] = useState([])
+    const [ boardApi, setBoard ] = useState(false)
     useEffect( ()=>{
         const url = `/api/board?${selected}=${search}`
         
@@ -83,8 +83,6 @@ export default function MainBoard() {
         return pageBtn;
     }
 
-    const p = render();
-
     return (
         <div className="meta-bg">
             <div className="nav">
@@ -99,7 +97,7 @@ export default function MainBoard() {
                         <button onClick={moveWrite}></button>
                     </div>
                     <div className="board__search-content">
-                        <select onChange={selectValue} >  {/*id="subHeaderSearch"*/}
+                        <select onChange={selectValue} >
                             <option value="title">제목</option>
                             <option value="nicname">작성자</option>
                         </select>
@@ -108,9 +106,9 @@ export default function MainBoard() {
                     </div>
                 </div>
                 <section className="board__list">
-                    { boardApi ? boardApi.reverse().map(board =>( 
+                    { Array.isArray(boardApi) ? boardApi.map(board => ( 
                         <BoardList key={board.boardnum} data={board}/>
-                    )).slice(firstPageNumber,LastPageNumber) :"아직안됨" }
+                    )).slice(firstPageNumber,LastPageNumber).reverse() : "로딩중..." }
                     <div className='page-btn'>
                         <button>&lt;</button>
                         {render().map(pageNationBtn => 
