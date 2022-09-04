@@ -2,7 +2,7 @@ import './css/MyPage.css'
 
 import Nav from '../components/Nav/MyPageNav'
 import NavConnectionConfirm from '../components/Nav/NavConnectionConfirm'
-import BoardList from '../components/BoardList/BoardList'
+import BoardList from '../components/Board/BoardList'
 
 import { useState, useEffect } from 'react'
 import { useSelector } from "react-redux";

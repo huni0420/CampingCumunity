@@ -2,7 +2,7 @@ import './css/Board.css'
 
 import Nav from '../components/Nav/MainNav'
 import ToMyPage from '../components/Nav/NavConnectionConfirm'
-import BoardList from "../components/BoardList/BoardList";
+import BoardList from "../components/Board/BoardList";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';

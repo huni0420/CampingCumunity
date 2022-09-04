@@ -7,7 +7,7 @@ export default function Login() {
     const [loading, setLoading] = useState(true);
         setTimeout(() => {
             setLoading(false);
-        }, 4000);
+        }, 2000);
     return (
         <div>
             { loading ? <Loading /> :<LoginMain />}
