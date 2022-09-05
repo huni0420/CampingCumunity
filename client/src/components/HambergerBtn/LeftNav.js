@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
@@ -37,17 +38,22 @@ export default function LeftNav ( props ){
     const navigate = useNavigate()
     const reduxState = useSelector((state)=> state.user)
 
-    // 얘땜에 이틀 고생함 ㅅㅂ진짜 개새끼 내가 이딴코드를 왜짯는지 화가날지경,
-    // 이거를 Nav바에 걸어버리니 그냥 싹다 막혀서 페이지 이동하고나서 뒤로가기가 안되는 지경에 이르르러서
-    // 이틀밤낮을 찾아헤매는데 왜 안되는지 안나와서 시발 내가진자 화가나려고한다, 진짜 이거 죽여버리고싶은 코드다!~!~ㅜㅏ링뉘ㅏ후ㅏㅣㄹ누힌믛ㅇㄴ
     // 이거쓰면 페이지 이동후 뒤로가기 막힘
     //window.history.forward();
 
-    const logout = () => {
-        window.localStorage.removeItem('persist:root');
-        document.location.href='/LoginMain';
+    const logout = async () => {
+        if(window.confirm('로그아웃 하시겠습니까?')===true){
+            //console.log(reduxState.email.includes('kakao'));
+            //console.log(process.env.REACT_APP_KAKAO_LOGOUT_REDIRECT_URI);
+            if(reduxState.email.includes('kakao')){
+                window.localStorage.removeItem('persist:root');
+                window.location.href='/LoginMain';
+            }else{
+                window.localStorage.removeItem('persist:root');
+                window.location.href='/LoginMain';
+            }
+        }
     }
-
     const moveMain = () => { navigate('/Main') }
     const moveBoard = () => { navigate('/Board') }
     const moveContent = () => { navigate('/Content') }

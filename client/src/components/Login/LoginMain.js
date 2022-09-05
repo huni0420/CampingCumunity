@@ -2,23 +2,25 @@ import './css/LoginMain.css';
 
 import { useNavigate } from 'react-router-dom';
 
-const googleWithLogin = () =>{
-    window.location.href =`https://accounts.google.com/o/oauth2/auth?`+
-    `${process.env.REACT_APP_CLIENT_ID}`+
-    `${process.env.REACT_APP_REDIRECT_URI}`+
-    `${process.env.REACT_APP_RESPONSE_TIPE}`+
-    `${process.env.REACT_APP_SCOPE}`
-}
 
 export default function LoginMain() {
-    const navigate = useNavigate()
-
-    const moveMain = () => { navigate('/Main') }
-    
-    const kakaoLogin = () => {
-        alert('아직 구현중에 있습니다.')
+    const googleWithLogin = () =>{
+        window.location.href =`https://accounts.google.com/o/oauth2/auth?
+                                ${process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                ${process.env.REACT_APP_GOOGLE_REDIRECT_URI}
+                                ${process.env.REACT_APP_GOOGLE_RESPONSE_TIPE}
+                                ${process.env.REACT_APP_GOOGLE_SCOPE}`
     }
 
+    const kakaoLogin = () => {
+        window.location.href =`https://kauth.kakao.com/oauth/authorize?response_type=code&${process.env.REACT_APP_KAKAO_API_KEY}${process.env.REACT_APP_KAKAO_REDIRECT_URI}`
+    }
+    //console.log(process.env.REACT_APP_KAKAO_API_KEY);
+    //console.log(process.env.REACT_APP_KAKAO_REDIRECT_URI);
+
+    const navigate = useNavigate()
+    const moveMain = () => { navigate('/Main') }
+    
     return (
         <>
             <div className='loginBg'>

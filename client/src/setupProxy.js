@@ -15,4 +15,11 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/user',
+    createProxyMiddleware({
+      target: 'https://kapi.kakao.com/v1',
+      changeOrigin: true,
+    })
+  );
 };

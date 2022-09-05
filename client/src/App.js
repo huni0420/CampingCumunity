@@ -1,5 +1,6 @@
 import Login from './routes/Login';
 import Join from './routes/Join';
+import JoinKakao from './routes/JoinKakao';
 import Main from './routes/Main';
 import Youtube from "./routes/Youtube";
 import Content from "./routes/Content";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Login />}/>
           <Route path="LoginMain/*" element={<LoginMain />} />
           <Route path="Join/*" element={<Join />}/>
+          <Route path="JoinKakao/*" element={<JoinKakao />}/>
           <Route path='CreateNic/*' element={<CreateNic />} />
           <Route path="Main/*" element={<Main />} />
           <Route path="Youtube/*" element={<Youtube />} />

@@ -1,5 +1,6 @@
 export const initState = {
     email: undefined,
-    nicname: ''
+    nicname: '',
+    access_token: ''
   }
 

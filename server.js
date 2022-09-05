@@ -1,7 +1,8 @@
 const expres = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const axios = require('axios')
+const axios = require('axios');
+const fetch = require("node-fetch");
 
 //db정보
 const dbconfig = require('./config/Database.js');
@@ -114,9 +115,13 @@ app.post('/api/createnicname', (req, res) => {
 app.post('/api/oauth/google', async (req, res) => {
   let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
   const {accessToken} = req.body;
-  const { data } = await axios.get(
-    `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
-  )
+  try {
+    const { data } = await axios.get(
+      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ accessToken }`
+    )
+  } catch (e) {
+    console.log(e)
+  }
   //console.log("받아온데이터567",data)// return 구글 가입정보
   connection.query(sql,[ data.email ],(err, rows, field)=>{
     //console.log("받아온 데이터123",rows[0]);
@@ -130,6 +135,35 @@ app.post('/api/oauth/google', async (req, res) => {
   })
 
   //res.send(data);
+})
+
+// access토큰을가지고 카카오 로그아웃 진행
+app.get('/api/oauth/kakao/logout', (req, res) => {
+  const url = 'https://kapi.kakao.com/v1/user/logout';
+
+})
+
+// 인가코드를 가지고 카카오에 사용자 정보 요청
+app.post('/api/oauth/kakao', async (req, res) => {
+  let sql = 'SELECT * FROM cc_camp.Users WHERE email = ?'
+  const { data } = await axios({
+    method: 'POST',
+    headers: {
+        Authorization: `Bearer ${req.body.accessToken}`,
+        "Content-type": "application/json",
+    },
+    url: 'https://kapi.kakao.com/v2/user/me'
+  });
+  console.log(data);
+  connection.query(sql,[ "kakao"+data.id ],(err, rows, field)=>{
+    if(rows[0] !== undefined){
+      console.log("0번째임",rows[0]);
+      //res.send([rows[0].nicname]);
+      res.send(rows);
+    }
+    else
+      res.send([{email: data.email}]);
+  })
 })
 
 // write에서 보내온 데이터로 DB에 저장
