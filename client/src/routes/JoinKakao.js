@@ -38,8 +38,8 @@ export default function JoinGoogle() {
     },[]);
     
     const requestToken = (code) => {
-        const JS_APP_KEY ="6aedb4608277aabea046727550cf2aa9";
-        const REDIRECT_URI = "http://localhost:3000/JoinKakao";
+        const JS_APP_KEY = `${process.env.REACT_APP_KAKAO_API_KEY2}`;
+        const REDIRECT_URI = `${process.env.REACT_APP_KAKAO_REDIRECT_URI2}`;
         const makeFormData = params => {
           const searchParams = new URLSearchParams()
           Object.keys(params).forEach(key => {
@@ -59,7 +59,7 @@ export default function JoinGoogle() {
             grant_type: 'authorization_code',
             client_id: JS_APP_KEY,
             redirect_uri: REDIRECT_URI,
-            client_secret: "XZMXvrqFt1LTBp7l3yQEk1osaijMHCgA",
+            client_secret: `${process.env.REACT_APP_KAKAO_CLIENT_SECRET}`,
             code,
           })
         })
